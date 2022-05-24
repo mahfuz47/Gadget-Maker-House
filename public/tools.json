@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "toolName": "SATA Screwdriver Set - ST09309SJ",
+    "toolImage": "https://m.media-amazon.com/images/I/71TXcSmO9GL._AC_SY355_.jpg",
+    "description": "[VERSATILE SET] PHILLIPS - #1x75mm (3inch), #2x100mm (4inch), #2x150mm (6inch)' SLOTTED - 5x75mm (3inch), 5x100mm (4inch), 6x150mm (6inch)",
+    "minQuantity": 30,
+    "availableQuantity": 500,
+    "price": 12
+  },
+  {
+    "id": 2,
+    "toolName": "Ratcheting Screwdriver, 10 Bit (BDHT68000)",
+    "toolImage": "https://m.media-amazon.com/images/I/51-+5zWUChL._AC_SX425_.jpg",
+    "description": "VERSATILE: Conveniently transforms into 10 different types of screwdrivers using the included bits (Phillips Head (2) #1 and (2) #2, Slotted 1/4 in. and 3/16 in., Star T15 and T20, and Squarehead SQ1 and SQ2)",
+    "minQuantity": 30,
+    "availableQuantity": 450,
+    "price": 22
+  },
+  {
+    "id": 3,
+    "toolName": "Nut Driver",
+    "toolImage": "https://m.media-amazon.com/images/I/51xlk4+8bcL._AC_SY355_.jpg",
+    "description": "Includes industrial strength heat treated bits: 3/8-Inch, 5/16-Inch and 1/4-Inch nut drivers, #1 and #2 Phillips, 1/4-Inch and 3/16-Inch slotted, T10 and T15 TORX, and #1 and #2 square recess",
+    "minQuantity": 30,
+    "availableQuantity": 300,
+    "price": 16
+  },
+  {
+    "id": 4,
+    "toolName": "Diamond Tip Screwdriver Set",
+    "toolImage": "https://images-na.ssl-images-amazon.com/images/I/61s8nRs9XIL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+    "description": "Slotted screwdriver sizes available in 3/16inch x 3inch, 1/4inch x 4inch, and 5/16inch x 6inch",
+    "minQuantity": 50,
+    "availableQuantity": 1000,
+    "price": 8
+  },
+  {
+    "id": 5,
+    "toolName": "TEKTON Mini Screwdriver",
+    "toolImage": "https://m.media-amazon.com/images/I/71ZTTDWlL9L._AC_SX355_.jpg",
+    "description": "Includes 2-pc. slotted mini screwdrivers: 3/16, 1/4 in.; 2-pc. Phillips mini screwdrivers: #1, #2",
+    "minQuantity": 100,
+    "availableQuantity": 2000,
+    "price": 12
+  },
+  {
+    "id": 6,
+    "toolName": "Wheeler Space Saver Screwdriver",
+    "toolImage": "https://m.media-amazon.com/images/I/91Ddi2qSm6L._AC_SX425_.jpg",
+    "description": "Magnetic tip for more convenient control, whether pulling out screws or lining them up with a hole; tweezer includes a plated resistive electrostatic discharge (ESD) coating to keep electronic devices safe from damaging static",
+    "minQuantity": 30,
+    "availableQuantity": 300,
+    "price": 35
+  }
+]
