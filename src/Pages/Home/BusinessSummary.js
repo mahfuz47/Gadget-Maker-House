@@ -1,18 +1,47 @@
 import React from "react";
 
 const BusinessSummary = () => {
+  const businessSummary = [
+    {
+      id: 1,
+      title: "Membership",
+      description: "We have awesome membership all over the world",
+      value: "500k+",
+    },
+    {
+      id: 2,
+      title: "Projects",
+      description: "We have done awesome projects",
+      value: "1.5M",
+    },
+    {
+      id: 3,
+      title: "Most Liked",
+      description: "We have awesome membership all over the world",
+      value: "1M",
+    },
+    {
+      id: 4,
+      title: "Countries",
+      description: "We deliver our services all over the world",
+      value: "26+",
+    },
+  ];
+
   return (
-    <div className="h-96 my-28 bg-gray-100 rounded-xl">
-      <div className="grid grid-cols-6  gap-4">
-        <div className="bg-indigo-500 h-28 rounded-xl col-span-2 "></div>
-        <div className="bg-indigo-500 h-28 rounded-xl col-span-3"></div>
-        <div className="bg-indigo-500 h-28 rounded-xl col-span-1"></div>
-        <div className="bg-indigo-500 h-28 rounded-xl col-span-3"></div>
-        <div className="bg-indigo-500 h-28 rounded-xl col-span-1"></div>
-        <div className="bg-indigo-500 h-28 rounded-xl col-span-2"></div>
-        <div className="bg-indigo-500 h-28 rounded-xl col-span-1"></div>
-        <div className="bg-indigo-500 h-28 rounded-xl col-span-3"></div>
-        <div className="bg-indigo-500 h-28 rounded-xl col-span-2"></div>
+    <div className="h-full my-28 bg-gray-100 rounded-xl p-5">
+      <h1 className="text-center text-3xl font-bold my-5">Business Summary</h1>
+      <div className="grid grid-cols-4 gap-3 py-3">
+        {businessSummary.map(({ title, description, value }) => (
+          <div
+            key={title.id}
+            className="bg-white p-3 rounded-md text-center gap-2 grid shadow-md"
+          >
+            <h1 className="text-2xl font-bold ">{title}</h1>
+            <h1 className="font-black text-3xl text-blue-600">{value}</h1>
+            <span className="text-sm text-slate-400">{description}</span>
+          </div>
+        ))}
       </div>
     </div>
   );

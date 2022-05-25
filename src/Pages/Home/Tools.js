@@ -18,7 +18,7 @@ const Tools = () => {
 
           <div className="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6 gap-y-8">
             {tools.map((tool) => (
-              <div key={tool._id} className="group relative">
+              <div key={tool?._id} className="group relative">
                 <div className="relative w-full h-full shadow-lg bg-white rounded-lg overflow-hidden group-hover:scale-105 group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
                   <img
                     src={tool?.toolImage}
@@ -34,7 +34,7 @@ const Tools = () => {
                   <div>
                     <button
                       onClick={() => {
-                        navigateToPartsDetails(tool._id);
+                        navigateToPartsDetails(tool?._id);
                       }}
                       className="btn bg-indigo-600 rounded-xl px-3 py-1 font-bold mt-6 uppercase hover:bg-indigo-800 text-white hover:text-black"
                     >
@@ -45,19 +45,19 @@ const Tools = () => {
                 <div className="px-4">
                   <p>
                     <small>
-                      {tool.description.length > 80
-                        ? tool.description.slice(0, 100) + "......"
+                      {tool?.description.length > 80
+                        ? tool?.description.slice(0, 100) + "......"
                         : ""}
                     </small>
                   </p>
                 </div>
                 <div className="px-4">
-                  <p className="font-bold">Price: ${tool.price}</p>
+                  <p className="font-bold">Price: ${tool?.price}</p>
                 </div>
                 <div className="flex items-center justify-between px-4">
-                  <p className="font-bold">Min Order: ${tool.minQuantity}</p>
+                  <p className="font-bold">Min Order: ${tool?.minQuantity}</p>
                   <p className="font-bold">
-                    Available Quantity: ${tool.availableQuantity}
+                    Available Quantity: ${tool?.availableQuantity}
                   </p>
                 </div>
               </div>

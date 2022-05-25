@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Title from "../Utilities/Title";
+import Title from "../../Utilities/Title";
 
 const Parchase = () => {
   const { id } = useParams();
@@ -86,7 +86,7 @@ const Parchase = () => {
           <div className="bg-white shadow overflow-hidden sm:rounded-lg">
             <div className="px-4 py-5 sm:px-6">
               <h3 className="text-xl font-bold leading-6 font-mono text-gray-900">
-                {toolDetail?.toolName}
+                {toolDetail.toolName}
               </h3>
               <p className="mt-1 max-w-2xl text-sm text-gray-500">
                 Details and Parchase functionalities.
@@ -97,7 +97,7 @@ const Parchase = () => {
                 <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-bold text-gray-500">Torque</dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {toolDetail?.Torque}
+                    {toolDetail.Torque}
                   </dd>
                 </div>
                 <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -105,13 +105,13 @@ const Parchase = () => {
                     Cylinders
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {toolDetail?.cylinders}
+                    {toolDetail.cylinders}
                   </dd>
                 </div>
                 <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-bold text-gray-500">Price</dt>
                   <dd className="mt-1 font-bold text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    <p>${toolDetail?.price}</p>
+                    <p>${toolDetail.price}</p>
                   </dd>
                 </div>
                 <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -119,7 +119,7 @@ const Parchase = () => {
                     Description
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {toolDetail?.description}
+                    {toolDetail.description}
                   </dd>
                 </div>
                 <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -127,7 +127,7 @@ const Parchase = () => {
                     Minimum Order Quantity
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 font-bold">
-                    {toolDetail?.minQuantity}
+                    {toolDetail.minQuantity}
                   </dd>
                 </div>
                 <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -135,7 +135,7 @@ const Parchase = () => {
                     Avaliable Quantity
                   </dt>
                   <dd className="mt-1 text-sm font-bold text-gray-900 sm:mt-0 sm:col-span-2">
-                    {toolDetail?.availableQuantity}
+                    {toolDetail.availableQuantity}
                   </dd>
                 </div>
               </dl>
