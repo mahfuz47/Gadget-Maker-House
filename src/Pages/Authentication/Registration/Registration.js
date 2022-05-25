@@ -133,7 +133,7 @@ const Registration = () => {
                     },
                     minLength: {
                       value: 8,
-                      message: "password must be minimum 6 characters or long",
+                      message: "password must be minimum 8 characters or long",
                     },
                   })}
                 />

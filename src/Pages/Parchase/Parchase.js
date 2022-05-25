@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
-import Title from "../../Utilities/Title";
 import { toast } from "react-toastify";
+import auth from "../../firebase.init";
+import Loading from "../../Utilities/Loading";
+import Title from "../../Utilities/Title";
 
 const Parchase = () => {
   const { id } = useParams();
+  const [user, loading] = useAuthState(auth);
+  // const [available, setAvailable] = useState();
   const [toolDetail, setToolDetail] = useState({});
   const { _id, toolName, toolImage, orderQuantity } = toolDetail;
   const [orderData, setOrderData] = useState(orderQuantity);
@@ -13,15 +18,25 @@ const Parchase = () => {
       .then((res) => res.json())
       .then((data) => setToolDetail(data));
   }, [id]);
-
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/orders/${id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setAvailable(data));
+  // }, [id]);
+  // console.log(available);
+  // //
+  //
+  //Handle Order
+  //
+  //
   const handleOrder = (event) => {
-    console.log(_id, toolName, toolImage, orderQuantity);
-
     const order = {
       id: _id,
+      user: user.displayName,
+      email: user.email,
       tool: toolName,
       image: toolImage,
-      quantity: orderQuantity,
+      quantity: orderData,
     };
     fetch(`http://localhost:5000/orders`, {
       method: "POST",
@@ -37,8 +52,11 @@ const Parchase = () => {
         }
       });
   };
-
-  console.log(toolDetail);
+  console.log(orderData);
+  // const restQuantity = {
+  //   quantityData: availableQuantity - available,
+  // };
+  // const { quantityData } = restQuantity;
 
   const minusQuantity = (quantity) => {
     let totalQuantity = parseInt(quantity) - 10;
@@ -49,6 +67,9 @@ const Parchase = () => {
     setOrderData(totalQuantity);
   };
 
+  if (loading) {
+    return <Loading></Loading>;
+  }
   return (
     <div>
       <Title title={"Parchase"}></Title>
@@ -65,7 +86,7 @@ const Parchase = () => {
                 <p className="text-2xl font-bold">Order Quantity:</p>
               </div>
               <button
-                onClick={() => minusQuantity(orderData)}
+                onClick={() => minusQuantity(orderQuantity)}
                 className="btn btn-square btn-sm btn-outline"
               >
                 <svg
@@ -83,7 +104,7 @@ const Parchase = () => {
               </button>
               <p className="font-bold text-black text-2xl">{orderData}</p>
               <button
-                onClick={() => plusQuantity(orderData)}
+                onClick={() => plusQuantity(orderQuantity)}
                 className="btn btn-square btn-sm btn-outline"
               >
                 <svg
@@ -114,7 +135,7 @@ const Parchase = () => {
           <div className="bg-white shadow overflow-hidden sm:rounded-lg">
             <div className="px-4 py-5 sm:px-6">
               <h3 className="text-xl font-bold leading-6 font-mono text-gray-900">
-                {toolDetail.toolName}
+                {toolDetail?.toolName}
               </h3>
               <p className="mt-1 max-w-2xl text-sm text-gray-500">
                 Details and Parchase functionalities.
@@ -122,43 +143,41 @@ const Parchase = () => {
             </div>
             <div className="border-t border-gray-200">
               <dl>
-                <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-bold text-gray-500">Torque</dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {toolDetail.Torque}
+                <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-bold text-gray-500">User</dt>
+                  <dd className="mt-1 text-xl uppercase font-bold text-gray-900 sm:mt-0 sm:col-span-2">
+                    {user?.displayName}
+                  </dd>
+                </div>
+                <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-gray-500">Email</dt>
+                  <dd className="mt-1 text-sm font-bold text-gray-900 sm:mt-0 sm:col-span-2">
+                    {user?.email}
                   </dd>
                 </div>
                 <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">
-                    Cylinders
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {toolDetail.cylinders}
-                  </dd>
-                </div>
-                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-bold text-gray-500">Price</dt>
                   <dd className="mt-1 font-bold text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    <p>${toolDetail.price}</p>
+                    <p>${toolDetail?.price}</p>
                   </dd>
                 </div>
-                <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-bold text-gray-500">
                     Description
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {toolDetail.description}
+                    {toolDetail?.description}
                   </dd>
                 </div>
-                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-bold text-gray-500">
                     Minimum Order Quantity
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 font-bold">
-                    {toolDetail.minQuantity}
+                    {toolDetail?.minQuantity}
                   </dd>
                 </div>
-                <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-bold text-gray-500">
                     Avaliable Quantity
                   </dt>
