@@ -1,38 +1,85 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Loading from "../Utilities/Loading";
 import Title from "../Utilities/Title";
 
 const Parchase = () => {
   const { id } = useParams();
   const [toolDetail, setToolDetail] = useState({});
+  const { orderQuantity } = toolDetail;
 
   useEffect(() => {
-    const url = `http://localhost:5000/tools/${id}`;
-    fetch(url)
+    fetch(`http://localhost:5000/tools/${id}`)
       .then((res) => res.json())
       .then((data) => setToolDetail(data));
   }, [id]);
+  const [orderData, setOrderData] = useState(orderQuantity);
+  console.log(toolDetail);
 
-  if (!toolDetail) {
-    return <Loading></Loading>;
-  }
-  const { minQuantity, availableQuantity } = toolDetail;
-  console.log(minQuantity, availableQuantity);
+  const minusQuantity = (quantity) => {
+    let totalQuantity = parseInt(quantity) - 10;
+    setOrderData(totalQuantity);
+  };
+  const plusQuantity = (quantity) => {
+    let totalQuantity = parseInt(quantity) + 10;
+    setOrderData(totalQuantity);
+  };
+
   return (
     <div>
       <Title title={"Parchase"}></Title>
-      <div className="grid grid-cols-2 items-center space-x-4 gap-y-4">
-        <div className="py-5">
+      <div className="grid grid-cols-2 xs:inline items-center space-x-4 gap-y-4">
+        <div className="py-5 sm:w-9/12">
           <img
             className="w-full rounded-xl"
             src={toolDetail?.toolImage}
             alt={toolDetail?.toolName}
           />
           <div className="flex justify-between items-center px-2">
-            <p className="text-sm font-bold text-gray-500">
-              Order Quantity: {minQuantity}
-            </p>
+            <div className="flex justify-between space-x-2 items-center px-2">
+              <div>
+                <p className="text-2xl font-bold">Order Quantity:</p>
+              </div>
+              <button
+                onClick={() => minusQuantity()}
+                className="btn btn-square btn-sm btn-outline"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+              <p className="font-bold text-black text-2xl">{orderData}</p>
+              <button
+                onClick={() => plusQuantity()}
+                className="btn btn-square btn-sm btn-outline"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div>
+              <button className="btn bg-indigo-600 rounded-xl px-3 py-1 font-bold uppercase hover:bg-indigo-800 text-white ">
+                Place Order
+              </button>
+            </div>
           </div>
         </div>
         <div>
