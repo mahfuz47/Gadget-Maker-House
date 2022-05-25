@@ -8,10 +8,11 @@ import { ToastContainer } from "react-toastify";
 import Parchase from "./Pages/Parchase/Parchase";
 import Registration from "./Pages/Authentication/Registration/Registration";
 import Login from "./Pages/Authentication/Login/Login";
+import Footer from "./Pages/Shared/Footer";
 
 function App() {
   return (
-    <div className="max-w-7xl mx-auto px-12">
+    <div className="max-w-7xl mx-auto">
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
@@ -22,7 +23,7 @@ function App() {
           element={<Registration></Registration>}
         ></Route>
       </Routes>
-
+      <Footer></Footer>
       <ToastContainer></ToastContainer>
     </div>
   );
