@@ -11,7 +11,7 @@ const Parchase = () => {
   const [user, loading] = useAuthState(auth);
   // const [available, setAvailable] = useState();
   const [toolDetail, setToolDetail] = useState({});
-  const { _id, toolName, toolImage, orderQuantity } = toolDetail;
+  const { _id, toolName, toolImage, price, orderQuantity } = toolDetail;
   const [orderData, setOrderData] = useState(orderQuantity);
   useEffect(() => {
     fetch(`http://localhost:5000/tools/${id}`)
@@ -21,20 +21,23 @@ const Parchase = () => {
   // useEffect(() => {
   //   fetch(`http://localhost:5000/orders/${id}`)
   //     .then((res) => res.json())
-  //     .then((data) => setAvailable(data));
+  //     .then((data) => setAvailable(data[0]));
   // }, [id]);
-  // console.log(available);
-  // //
+  // console.log(available.quantity);
+  //
   //
   //Handle Order
   //
   //
+
   const handleOrder = (event) => {
+    let totalPrice = price * orderQuantity;
     const order = {
       id: _id,
       user: user.displayName,
       email: user.email,
       tool: toolName,
+      price: totalPrice,
       image: toolImage,
       quantity: orderData,
     };
@@ -49,6 +52,8 @@ const Parchase = () => {
       .then((data) => {
         if (data.success) {
           toast.success("order places placed");
+        } else {
+          toast.error("You can order only one time for every Product");
         }
       });
   };

@@ -52,8 +52,8 @@ const Registration = () => {
     console.log(data);
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
-    toast("Updated profile");
-    navigate("/");
+    toast("Account Created");
+    navigate("/dashboard");
   };
   return (
     <>
