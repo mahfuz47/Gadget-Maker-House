@@ -32,9 +32,9 @@ const BusinessSummary = () => {
     <div className="h-full my-28 bg-gray-100 rounded-xl p-5">
       <h1 className="text-center text-3xl font-bold my-5">Business Summary</h1>
       <div className="grid grid-cols-4 gap-3 py-3">
-        {businessSummary.map(({ title, description, value }) => (
+        {businessSummary.map(({ title, description, value, id }) => (
           <div
-            key={title.id}
+            key={id}
             className="bg-white p-3 rounded-md text-center gap-2 grid shadow-md"
           >
             <h1 className="text-2xl font-bold ">{title}</h1>

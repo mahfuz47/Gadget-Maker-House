@@ -36,14 +36,12 @@ const Navbar = () => {
       <li>
         {user ? (
           <div className="flex justify-between items-center">
-            <div className="w-8 h-8">
-              <img
-                className="w-full rounded-full"
-                src={user.photoURL}
-                alt="userImage"
-              />
-            </div>
-            <button onClick={handleSignOut}>Logout</button>
+            <p className="bg-gray-100 rounded-xl p-2 font-bold text-sm text-graay-900 uppercase">
+              {user.displayName}
+            </p>
+            <button className="font-bold" onClick={handleSignOut}>
+              Logout
+            </button>
           </div>
         ) : (
           <Link to="/login">Login</Link>

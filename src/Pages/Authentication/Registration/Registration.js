@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import useToken from "../../../Hooks/useToken";
 import Loading from "../../../Utilities/Loading";
+import Title from "../../../Utilities/Title";
 
 const Registration = () => {
   const {
@@ -37,7 +38,7 @@ const Registration = () => {
   }
 
   if (token) {
-    navigate("/");
+    navigate("/dashboard");
   }
 
   if (error || gError || updateError) {
@@ -57,6 +58,7 @@ const Registration = () => {
   return (
     <>
       <div className="flex h-screen justify-center items-center ">
+        <Title title="Registration"></Title>
         <div className="card w-6/12 bg-base-100 shadow-xl">
           <div className="card-body">
             <h2 className="text-center text-2xl font-bold">Sign Up</h2>
@@ -130,7 +132,7 @@ const Registration = () => {
                       message: "Password Is Required",
                     },
                     minLength: {
-                      value: 6,
+                      value: 8,
                       message: "password must be minimum 6 characters or long",
                     },
                   })}

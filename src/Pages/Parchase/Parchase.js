@@ -1,18 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Title from "../../Utilities/Title";
+import { toast } from "react-toastify";
 
 const Parchase = () => {
   const { id } = useParams();
   const [toolDetail, setToolDetail] = useState({});
-  const { orderQuantity } = toolDetail;
-
+  const { _id, toolName, toolImage, orderQuantity } = toolDetail;
+  const [orderData, setOrderData] = useState(orderQuantity);
   useEffect(() => {
     fetch(`http://localhost:5000/tools/${id}`)
       .then((res) => res.json())
       .then((data) => setToolDetail(data));
   }, [id]);
-  const [orderData, setOrderData] = useState(orderQuantity);
+
+  const handleOrder = (event) => {
+    console.log(_id, toolName, toolImage, orderQuantity);
+
+    const order = {
+      id: _id,
+      tool: toolName,
+      image: toolImage,
+      quantity: orderQuantity,
+    };
+    fetch(`http://localhost:5000/orders`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success("order places placed");
+        }
+      });
+  };
+
   console.log(toolDetail);
 
   const minusQuantity = (quantity) => {
@@ -40,7 +65,7 @@ const Parchase = () => {
                 <p className="text-2xl font-bold">Order Quantity:</p>
               </div>
               <button
-                onClick={() => minusQuantity()}
+                onClick={() => minusQuantity(orderData)}
                 className="btn btn-square btn-sm btn-outline"
               >
                 <svg
@@ -58,7 +83,7 @@ const Parchase = () => {
               </button>
               <p className="font-bold text-black text-2xl">{orderData}</p>
               <button
-                onClick={() => plusQuantity()}
+                onClick={() => plusQuantity(orderData)}
                 className="btn btn-square btn-sm btn-outline"
               >
                 <svg
@@ -76,7 +101,10 @@ const Parchase = () => {
               </button>
             </div>
             <div>
-              <button className="btn bg-indigo-600 rounded-xl px-3 py-1 font-bold uppercase hover:bg-indigo-800 text-white ">
+              <button
+                onClick={handleOrder}
+                className="btn bg-indigo-600 rounded-xl px-3 py-1 font-bold uppercase hover:bg-indigo-800 text-white "
+              >
                 Place Order
               </button>
             </div>

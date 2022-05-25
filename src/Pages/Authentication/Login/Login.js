@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
+import useToken from "../../../Hooks/useToken";
 import Loading from "../../../Utilities/Loading";
 import Title from "../../../Utilities/Title";
 
@@ -24,8 +25,8 @@ const Login = () => {
   //Sign in with Email and password
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-
-  // const [token] = useToken(user || gUser);
+  console.log(user || gUser);
+  const [token] = useToken(user || gUser);
 
   let signInError;
   const navigate = useNavigate();
@@ -33,11 +34,10 @@ const Login = () => {
   let from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    if (user || gUser) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, gUser, navigate, from]);
-  // }, [token, from, navigate]);
+  }, [token, from, navigate]);
 
   if (loading || gLoading) {
     return <Loading></Loading>;
@@ -107,7 +107,7 @@ const Login = () => {
                       message: "Password Is Required",
                     },
                     minLength: {
-                      value: 6,
+                      value: 8,
                       message: "password must be minimum 6 characters or long",
                     },
                   })}
