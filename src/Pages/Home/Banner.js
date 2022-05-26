@@ -35,14 +35,14 @@ const Banner = () => {
       icons: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-8 w-8"
+          className="h-8 w-8"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
           <path
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-            clip-rule="evenodd"
+            clipRule="evenodd"
           />
         </svg>
       ),
@@ -52,7 +52,7 @@ const Banner = () => {
       icons: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-8 w-8"
+          className="h-8 w-8"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -65,15 +65,15 @@ const Banner = () => {
       icons: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-8 w-8"
+          className="h-8 w-8"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          stroke-width="2"
+          strokeWidth="2"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
           />
         </svg>
@@ -84,14 +84,14 @@ const Banner = () => {
       icons: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-8 w-8"
+          className="h-8 w-8"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
           <path
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z"
-            clip-rule="evenodd"
+            clipRule="evenodd"
           />
         </svg>
       ),
@@ -116,7 +116,10 @@ const Banner = () => {
             </div>
             <div className="grid md:grid-cols-4 grid-cols-2 gap-3">
               {features.map(({ title, icons }) => (
-                <div className="bg-indigo-600 text-white p-5 flex flex-col items-center hover:bg-indigo-400 justify-between text-center rounded-md gap-3">
+                <div
+                  key={title}
+                  className="bg-indigo-600 text-white p-5 flex flex-col items-center hover:bg-indigo-400 justify-between text-center rounded-md gap-3"
+                >
                   <span>{icons}</span>
                   <h1>{title}</h1>
                 </div>
@@ -144,7 +147,7 @@ const Banner = () => {
               className="rounded-md"
             >
               {bannerImages.map(({ img }) => (
-                <SwiperSlide className="bg-slate-600">
+                <SwiperSlide key={img} className="bg-slate-600">
                   <img
                     src={img}
                     className="object-cover md:h-[350px] h-[250px] w-full"

@@ -9,59 +9,76 @@ const Tools = () => {
     navigate(`/tools/${id}`);
   };
   return (
-    <div className="bg-gray-100">
+    <div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto py-16 sm:py-10 lg:py-10 lg:max-w-none">
-          <h2 className="text-4xl font-extrabold text-gray-900 text-center my-5 font-serif">
+          <h2 className="text-4xl font-extrabold text-gray-900 text-center mb-10 font-serif">
             Highlight Gadgets
           </h2>
 
-          <div className="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6 gap-y-8">
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 gap-3">
             {tools.map((tool) => (
-              <div key={tool?._id} className="group relative">
-                <div className="relative w-full h-full shadow-lg bg-white rounded-lg overflow-hidden group-hover:scale-105 group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-                  <img
-                    src={tool?.toolImage}
-                    alt={tool?.toolName}
-                    className="w-full h-full object-center object-cover"
-                    title={tool?.toolName}
-                  />
-                </div>
-                <div className="flex items-center justify-between px-4">
-                  <h3 className="mt-6 text-xl font-bold font-sans text-slate-900">
-                    <a href="/tools/:id">{tool?.toolName}</a>
+              <div
+                key={tool._id}
+                className="bg-white p-5 flex flex-col justify-between gap-2 rounded-md shadow-md"
+              >
+                {/* Product Image */}
+                <img
+                  src={tool.toolImage}
+                  alt={tool.toolName}
+                  className="w-full h-[200px] object-center object-cover rounded-md"
+                  title={tool.toolName}
+                />
+                {/* Product Name */}
+                <a href="/tools/:id">
+                  <h3 className="mt-6 text-lg font-bold font-sans text-slate-900">
+                    {tool.toolName}
                   </h3>
-                  <div>
-                    <button
-                      onClick={() => {
-                        navigateToPartsDetails(tool?._id);
-                      }}
-                      className="btn bg-indigo-600 rounded-xl px-3 py-1 font-bold mt-6 uppercase hover:bg-indigo-800 text-white hover:text-black"
-                    >
-                      purchase
-                    </button>
-                  </div>
-                </div>
-                <div className="px-4">
-                  <p>
-                    <small>
-                      {tool?.description.length > 80
-                        ? tool?.description.slice(0, 100) + "......"
-                        : ""}
-                    </small>
+                </a>
+                {/* Product Description */}
+                <p>
+                  <small>
+                    {tool.description.length > 80
+                      ? tool.description.slice(0, 70) + "..."
+                      : ""}
+                  </small>
+                </p>
+                <div className="flex items-center justify-between">
+                  <p className="font-bold text-green-600">
+                    {tool.availableQuantity} In stock
                   </p>
+                  <p className="font-bold text-3xl">${tool.price}</p>
                 </div>
-                <div className="px-4">
-                  <p className="font-bold">Price: ${tool?.price}</p>
-                </div>
-                <div className="flex items-center justify-between px-4">
-                  <p className="font-bold">Min Order: ${tool?.minQuantity}</p>
-                  <p className="font-bold">
-                    Available Quantity: ${tool?.availableQuantity}
-                  </p>
-                </div>
+                <button
+                  onClick={() => {
+                    navigateToPartsDetails(tool._id);
+                  }}
+                  className="btn bg-indigo-600 hover:bg-indigo-800 w-full border-0 rounded font-bold uppercase text-white "
+                >
+                  purchase
+                </button>
               </div>
             ))}
+            <div className="flex items-center px-4">
+              {" "}
+              <button className="btn btn-secondary btn-outline flex justify-between">
+                See all Products
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>

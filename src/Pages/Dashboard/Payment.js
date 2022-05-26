@@ -45,7 +45,7 @@ const Payment = () => {
             </p>
           </div>
         </div>
-        <div class="divider px-2 font-bold text-indigo-600">CARD INFO</div>
+        <div className="divider px-2 font-bold text-indigo-600">CARD INFO</div>
 
         <div className="card flex-shrink-0 w-50 max-w-md shadow-2xl bg-base-100">
           <div className="card-body">
