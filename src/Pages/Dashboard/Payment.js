@@ -27,23 +27,32 @@ const Payment = () => {
   }
   console.log(order._id);
   return (
-    <div>
-      <div className="card w-50 max-w-md bg-base-100 shadow-xl my-12">
-        <div className="card-body">
-          <p className="text-success font-bold">Hello, {order.user}</p>
-          <h2 className="card-title">Please Pay for {order.tool}</h2>
-          <p>
-            Your Email: <span className="text-orange-700">{order.email}</span>{" "}
-            Will be notified when your order we shipped.
-          </p>
-          <p>Please pay: ${order.price}</p>
+    <div className="flex justify-center items-center h-screen">
+      <div>
+        <div className="card w-50 max-w-md bg-base-100 shadow-xl my-12 border-2 border-solid">
+          <div className="card-body">
+            <p className="text-success font-bold">Hello, {order.user}</p>
+            <h2 className="card-title font-bold">Payment For:</h2>
+            <h2 className="text-xl font-bold text-gray-900 uppercase">
+              {order.tool}
+            </h2>
+            <p className="text-gray-900 font-semibold">
+              Your Email: <span className="text-orange-700">{order.email}</span>{" "}
+              will be notified when your order get shipped.
+            </p>
+            <p className="font-bold">
+              Amount: <span className="text-indigo-500">${order.price}</span>
+            </p>
+          </div>
         </div>
-      </div>
-      <div className="card flex-shrink-0 w-50 max-w-md shadow-2xl bg-base-100">
-        <div className="card-body">
-          <Elements stripe={stripePromise}>
-            <Checkout order={order} />
-          </Elements>
+        <div class="divider px-2 font-bold text-indigo-600">CARD INFO</div>
+
+        <div className="card flex-shrink-0 w-50 max-w-md shadow-2xl bg-base-100">
+          <div className="card-body">
+            <Elements stripe={stripePromise}>
+              <Checkout order={order} />
+            </Elements>
+          </div>
         </div>
       </div>
     </div>

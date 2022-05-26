@@ -3,8 +3,25 @@ import { Link } from "react-router-dom";
 import useOrders from "../../Hooks/useOrders";
 
 const MyOrders = () => {
-  const [orders] = useOrders();
-
+  const [orders, setOrders] = useOrders();
+  const handleDeleteOrders = (id) => {
+    const proceedDelete = window.confirm("Are you sure to delete?");
+    if (proceedDelete) {
+      const url = `http://localhost:5000/orders/${id}`;
+      fetch(url, {
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          const remaining = orders.filter((order) => order._id !== id);
+          setOrders(remaining);
+        });
+    }
+  };
   return (
     <div>
       <h2 className="text-lg font-bold">Total Order: {orders.length}</h2>
@@ -32,17 +49,42 @@ const MyOrders = () => {
                 <td>{tool?.price}$</td>
                 <td>
                   {tool?.price && !tool?.paid && (
-                    <Link to={`/dashboard/payment/${tool._id}`}>
-                      <button className="btn btn-xs btn-success">pay</button>
-                    </Link>
+                    <div className="flex items-center justify-start space-x-3">
+                      <Link to={`/dashboard/payment/${tool._id}`}>
+                        <button className="btn btn-sm btn-secondary font-bold text-white">
+                          pay
+                        </button>
+                      </Link>
+                      <button
+                        onClick={() => handleDeleteOrders(tool._id)}
+                        className="btn btn-error btn-sm"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   )}
                   {tool?.price && tool?.paid && (
-                    <div>
-                      <p>
-                        <span className="text-success">Paid</span>
+                    <div className="bg-gray-800 rounded-xl px-2">
+                      <p className="text-white font-bold rounded-xl text-lg flex items-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5 text-green-500"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                        Paid
                       </p>
                       <p>
-                        Transaction id:{" "}
+                        <span className="font-bold text-white">
+                          Transaction ID
+                        </span>
+                        :{" "}
                         <span className="text-success">
                           {tool?.transactionId}
                         </span>

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { useNavigate } from "react-router-dom";
 // import Loading from "../Shared/Loading";
 
 const CheckoutForm = ({ order }) => {
-  const { _id, price, tool, user } = order;
+  const { _id, price, user, email } = order;
   const stripe = useStripe();
+  const navigate = useNavigate();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
@@ -62,7 +64,7 @@ const CheckoutForm = ({ order }) => {
           card: card,
           billing_details: {
             name: user,
-            email: tool,
+            email: email,
           },
         },
       });
@@ -124,13 +126,21 @@ const CheckoutForm = ({ order }) => {
       </form>
       {cardError && <p className="text-red-500">{cardError}</p>}
       {success && (
-        <div className="text-green-500">
-          <p>{success} </p>
-          <p>
-            Your transaction Id:{" "}
-            <span className="text-orange-500 font-bold">{transactionId}</span>{" "}
-          </p>
-        </div>
+        <>
+          <div className="text-green-500">
+            <p>{success} </p>
+            <p>
+              Your transaction Id:{" "}
+              <span className="text-orange-500 font-bold">{transactionId}</span>{" "}
+            </p>
+          </div>
+          <button
+            onClick={() => navigate("/")}
+            className="btn btn-sm btn-outline btn-success"
+          >
+            go to home page
+          </button>
+        </>
       )}
     </>
   );
