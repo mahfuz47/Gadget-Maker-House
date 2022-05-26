@@ -27,7 +27,7 @@ const UserRow = ({ user, refetch }) => {
   };
 
   const handleRemoveUsers = (id) => {
-    const proceedDelete = window.confirm("Are you sure to delete?");
+    const proceedDelete = window.confirm("Are you sure to delete user?");
     if (proceedDelete) {
       const url = `http://localhost:5000/users/${email}`;
       fetch(url, {
