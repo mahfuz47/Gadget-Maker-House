@@ -27,17 +27,19 @@ const MakeAdmin = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>No.</th>
+              <th>USER</th>
+              <th>Role</th>
+              <th>Manage</th>
+              <th>Remove</th>
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {users.map((user, index) => (
               <UserRow
                 key={user._id}
                 user={user}
+                index={index}
                 serial={1}
                 refetch={refetch}
               ></UserRow>

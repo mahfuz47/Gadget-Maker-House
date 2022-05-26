@@ -21,6 +21,7 @@ import Payment from "./Pages/Dashboard/Payment";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import AllTools from "./Pages/Home/AllTools";
 import RequireAdmin from "./Pages/Authentication/RequireAdmin/RequireAdmin";
+import ManageProducts from "./Pages/Dashboard/ManageProducts";
 
 function App() {
   return (
@@ -78,6 +79,14 @@ function App() {
             element={
               <RequireAdmin>
                 <AddProducts></AddProducts>
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="manageProducts"
+            element={
+              <RequireAdmin>
+                <ManageProducts></ManageProducts>
               </RequireAdmin>
             }
           ></Route>

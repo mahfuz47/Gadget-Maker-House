@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-const UserRow = ({ user, refetch }) => {
+const UserRow = ({ user, refetch, index }) => {
   const [users, setUsers] = useState([]);
   const { email, role, _id } = user;
   const makeAdmin = () => {
@@ -45,9 +45,18 @@ const UserRow = ({ user, refetch }) => {
     }
   };
   return (
-    <tr>
-      <th>1</th>
-      <td>{email}</td>
+    <tr key={user._id}>
+      <td>
+        <p className="font-semibold">{index + 1}.</p>
+      </td>
+      <td>
+        <p className="font-semibold">{email}</p>
+      </td>
+      <td>
+        <p className="font-bold text-gray-900">
+          {role !== "admin" ? "User" : "Admin"}
+        </p>
+      </td>
       <td>
         {role !== "admin" && (
           <button onClick={makeAdmin} className="btn btn-xs">

@@ -10,7 +10,7 @@ const AddReview = () => {
     reset,
   } = useForm();
 
-  const imageStorageKey = "79b4e9d89e0427cc256d9618a64c72fc";
+  const imageStorageKey = "bbf2e00be48e3b47840eb1523b3c0438";
 
   const onSubmit = async (data) => {
     const image = data.image[0];
@@ -24,13 +24,17 @@ const AddReview = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
-          const img = result.data.url;
-          console.log(img);
+          const toolImage = result.data.url;
+          console.log(toolImage);
           const review = {
-            name: data.name,
-            opinion: data.review,
-            ratings: data.ratings,
-            img: img,
+            toolName: data.toolName,
+            description: data.description,
+            quantity: data.quantity,
+            price: data.price,
+            toolImage,
+            minQuantity: data.minQuantity,
+            availableQuantity: data.availableQuantity,
+            orderQuantity: data.orderQuantity,
           };
           // send to database
           fetch("http://localhost:5000/tools", {
@@ -55,7 +59,7 @@ const AddReview = () => {
   };
 
   return (
-    <div className="flex h-screen justify-center items-center">
+    <div className="flex min-h-screen justify-center items-center">
       <div className="card w-6/12 bg-base-100 shadow-xl px-3">
         <h2 className="text-3xl text-indigo-700 font-bold text-center uppercase">
           Add a Review
@@ -77,9 +81,9 @@ const AddReview = () => {
               })}
             />
             <label className="label">
-              {errors.tool?.type === "required" && (
+              {errors.toolName?.type === "required" && (
                 <span className="label-text font-bold-alt text-red-500">
-                  {errors.tool.message}
+                  {errors.toolName.message}
                 </span>
               )}
             </label>
@@ -234,7 +238,7 @@ const AddReview = () => {
             <input
               type="file"
               className="input input-bordered w-full"
-              {...register("toolImage", {
+              {...register("image", {
                 required: {
                   value: true,
                   message: "Image is Required",
