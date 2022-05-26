@@ -59,7 +59,7 @@ const MyOrders = () => {
                         onClick={() => handleDeleteOrders(tool._id)}
                         className="btn btn-error btn-sm"
                       >
-                        Delete
+                        Cancel
                       </button>
                     </div>
                   )}

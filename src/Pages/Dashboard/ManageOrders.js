@@ -1,16 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import useOrders from "../../Hooks/useOrders";
+import usePaidOrders from "../../Hooks/usePaidOrders";
 import Title from "../../Utilities/Title";
 
 const ManageOrders = () => {
-  const [orders, setOrders] = useOrders();
   const navigate = useNavigate();
-
+  const [paidOrder, setPaidOrder] = usePaidOrders();
   const handleDeleteOrders = (id) => {
     const proceedDelete = window.confirm("Are you sure to delete?");
     if (proceedDelete) {
-      const url = `http://localhost:5000/orders/${id}`;
+      const url = `http://localhost:5000/paidOrders/${id}`;
       fetch(url, {
         method: "DELETE",
         headers: {
@@ -20,8 +19,8 @@ const ManageOrders = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          const remaining = orders.filter((order) => order._id !== id);
-          setOrders(remaining);
+          const remaining = paidOrder.filter((order) => order._id !== id);
+          setPaidOrder(remaining);
         });
     }
   };
@@ -37,30 +36,32 @@ const ManageOrders = () => {
               <th>Tool</th>
               <th>Name</th>
               <th>quantity</th>
-              <th>Price</th>
+              <th>Payment</th>
               <th>DELETE</th>
             </tr>
           </thead>
           <tbody>
-            {orders.map((tool, index) => (
+            {paidOrder.map((order, index) => (
               <tr key={index}>
                 <th>{index + 1}</th>
                 <td>
-                  <img className="w-20" src={tool?.image} alt="" />
+                  <img className="w-20" src={order?.image} alt="" />
                 </td>
-                <td>{tool?.tool}</td>
+                <td>{order?.tool}</td>
+                <td>{order.quantity ? order.quantity : order.order}</td>
                 <td>
-                  {tool.quantity
-                    ? tool.quantity
-                    : tool.order + "{default quantity}"}
+                  {order?.paid && (
+                    <p className="text-green-400 pl-2 font-extrabold rounded-xl">
+                      PAID
+                    </p>
+                  )}
                 </td>
-                <td>{tool?.price}$</td>
                 <td>
                   <button
-                    onClick={() => handleDeleteOrders(tool._id)}
+                    onClick={() => handleDeleteOrders(order._id)}
                     className="btn btn-error btn-sm"
                   >
-                    Delete
+                    Cancel Order
                   </button>
                 </td>
               </tr>

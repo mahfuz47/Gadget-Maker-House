@@ -17,7 +17,7 @@ const Tools = () => {
           </h2>
 
           <div className="grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 gap-3">
-            {tools.map((tool) => (
+            {tools.slice(0, 6).map((tool) => (
               <div
                 key={tool._id}
                 className="bg-white p-5 flex flex-col justify-between gap-2 rounded-md shadow-md"
