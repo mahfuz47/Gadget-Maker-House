@@ -15,12 +15,12 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyProfile from "./Pages/Dashboard/MyProfile";
 import ManageOrders from "./Pages/Dashboard/ManageOrders";
 import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
-import ManageAdmin from "./Pages/Dashboard/ManageAdmin";
 import AddReview from "./Pages/Dashboard/AddReview";
 import AddProducts from "./Pages/Dashboard/AddProducts";
 import Payment from "./Pages/Dashboard/Payment";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import AllTools from "./Pages/Home/AllTools";
+import RequireAdmin from "./Pages/Authentication/RequireAdmin/RequireAdmin";
 
 function App() {
   return (
@@ -57,18 +57,29 @@ function App() {
           <Route path="myOrders" element={<MyOrders></MyOrders>}></Route>
           <Route
             path="manageOrders"
-            element={<ManageOrders></ManageOrders>}
+            element={
+              <RequireAdmin>
+                <ManageOrders></ManageOrders>
+              </RequireAdmin>
+            }
           ></Route>
           <Route path="payment/:id" element={<Payment></Payment>}></Route>
           <Route path="addReview" element={<AddReview></AddReview>}></Route>
-          <Route path="makeAdmin" element={<MakeAdmin></MakeAdmin>}></Route>
           <Route
-            path="manageAdmin"
-            element={<ManageAdmin></ManageAdmin>}
+            path="makeAdmin"
+            element={
+              <RequireAdmin>
+                <MakeAdmin></MakeAdmin>
+              </RequireAdmin>
+            }
           ></Route>
           <Route
             path="addProducts"
-            element={<AddProducts></AddProducts>}
+            element={
+              <RequireAdmin>
+                <AddProducts></AddProducts>
+              </RequireAdmin>
+            }
           ></Route>
         </Route>
         <Route path="/login" element={<Login></Login>}></Route>
