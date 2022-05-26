@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 const UserRow = ({ user, refetch }) => {
-  const { email, role } = user;
+  const [users, setUsers] = useState([]);
+  const { email, role, _id } = user;
   const makeAdmin = () => {
     fetch(`http://localhost:5000/users/admin/${email}`, {
       method: "PUT",
@@ -24,6 +25,25 @@ const UserRow = ({ user, refetch }) => {
         }
       });
   };
+
+  const handleRemoveUsers = (id) => {
+    const proceedDelete = window.confirm("Are you sure to delete?");
+    if (proceedDelete) {
+      const url = `http://localhost:5000/users/${email}`;
+      fetch(url, {
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          const remaining = users.filter((user) => user._id !== id);
+          setUsers(remaining);
+        });
+    }
+  };
   return (
     <tr>
       <th>1</th>
@@ -36,7 +56,9 @@ const UserRow = ({ user, refetch }) => {
         )}
       </td>
       <td>
-        <button className="btn btn-xs">Remove User</button>
+        <button onClick={() => handleRemoveUsers(_id)} className="btn btn-xs">
+          Remove User
+        </button>
       </td>
     </tr>
   );
