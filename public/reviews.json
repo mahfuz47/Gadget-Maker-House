@@ -3,36 +3,42 @@
     "id": 1,
     "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6U6oEPUHZ3RxTeCIAag0yvdqhz5ClQHmNQG_8E3aaKXybwTNq0fEybXU2_Twvbs4cINo&usqp=CAU",
     "name": "Mark Evan",
-    "opinion": "As a Doctor, Dr. Mahfuzur Rahman is a very sharp minded and well trained doctor. I was his emergency patient few months ago."
+    "opinion": "The Gadget House Maker was always a good manufracturer",
+    "ratings": 5
   },
   {
     "id": 2,
     "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4SyD0ND-nVnnqoyhiGRd10vSflaT9cwS7ky1YQknPzG9HglFyFoR137gvBXaAKOwHLL0&usqp=CAU",
     "name": "Steve jack",
-    "opinion": "My grandma has some mental issues. After some months of taking therapy form Dr. Mahfuzur Rahman, She is quite well."
+    "opinion": "I choose this company for my new startup, because they are quite business friendly for new commers",
+    "ratings": 5
   },
   {
     "id": 3,
     "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgfTvKmQZl3ojuF0C4gijNXjYZPGvmmpsxSg&usqp=CAU",
     "name": "Qabila",
-    "opinion": "I was injured by a car accident one month ago and I immediately contact with Dr. Mahfuzur Rahman. Now I'm feel quite better."
+    "opinion": "They are just awesome in manufactering tools",
+    "ratings": 5
   },
   {
     "id": 4,
     "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI1RyffR7sqgCvpxaiwVY3ZyC8NLg1AzJUiwFsfSITFE6iKKfhiBrbuY5l0H-dVOfWoJ0&usqp=CAU",
     "name": "Lui Ackrman",
-    "opinion": "A great mental healer I've ever seen. He is a highly recommanded doctor."
+    "opinion": "Their delivery systems are quite impressing",
+    "ratings": 4
   },
   {
     "id": 5,
     "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQsu34yqIKdjK5cAWEcuUq3ryD30iiqd2ArQ&usqp=CAU",
     "name": "Erwin Crista",
-    "opinion": "My girlfriend was so sick and someone suggest me to contact with this doctor, and My girlfriend dead!"
+    "opinion": "Their online orders terms and conditions are great",
+    "ratings": 5
   },
   {
     "id": 6,
     "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3RKJxCJB5q4LKE5CuqI-6mtRme8eD_XUXCg&usqp=CAU",
     "name": "Jane kale",
-    "opinion": "With my husband's mental issues Dr. M treat him well. He is a highly recommanded doctor."
+    "opinion": "My dealership age of their company is more than 12 years.",
+    "ratings": 5
   }
 ]

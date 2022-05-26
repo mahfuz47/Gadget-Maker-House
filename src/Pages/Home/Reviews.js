@@ -4,13 +4,20 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import useReviews from "../../Hooks/useReviews";
 import Review from "./Review";
 import "swiper/css";
+import quote from "../../images/quote.svg";
 
 const Reviews = () => {
   const [reviews] = useReviews();
   console.log(reviews);
   return (
     <>
-      <h1 className="text-center mb-10 font-bold text-4xl">Client Says</h1>
+      <div className="flex justify-end">
+        <img src={quote} className="w-24 lg:w-48" alt="" />
+      </div>
+      <div>
+        <h2 className="text-4xl font-bold text-start mb-10">Clients Says</h2>
+      </div>
+
       <div>
         <Swiper
           slidesPerView={3}

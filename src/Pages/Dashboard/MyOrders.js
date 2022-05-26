@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useOrders from "../../Hooks/useOrders";
 
 const MyOrders = () => {
   const [orders, setOrders] = useOrders();
+  const navigate = useNavigate();
   const handleDeleteOrders = (id) => {
     const proceedDelete = window.confirm("Are you sure to delete?");
     if (proceedDelete) {
@@ -24,7 +25,15 @@ const MyOrders = () => {
   };
   return (
     <div>
-      <h2 className="text-lg font-bold">Total Order: {orders.length}</h2>
+      <div className="flex justify-between items-baseline">
+        <h2 className="text-lg font-bold">Total Order: {orders.length}</h2>
+        <button
+          onClick={() => navigate("/allTools")}
+          className="btn btn-outline btn-secondary btn-wide btn-sm text-white font-bold"
+        >
+          order again
+        </button>
+      </div>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
@@ -64,8 +73,8 @@ const MyOrders = () => {
                     </div>
                   )}
                   {tool?.price && tool?.paid && (
-                    <div className="bg-gray-800 rounded-xl px-2">
-                      <p className="text-white font-bold rounded-xl text-lg flex items-center">
+                    <div className="bg-gray-100 rounded-xl px-2">
+                      <p className="text-green-500 font-bold rounded-xl text-lg flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-5 w-5 text-green-500"
@@ -81,11 +90,11 @@ const MyOrders = () => {
                         Paid
                       </p>
                       <p>
-                        <span className="font-bold text-white">
+                        <span className="font-bold text-gray-900">
                           Transaction ID
                         </span>
                         :{" "}
-                        <span className="text-success">
+                        <span className="text-green-600 font-bold">
                           {tool?.transactionId}
                         </span>
                       </p>

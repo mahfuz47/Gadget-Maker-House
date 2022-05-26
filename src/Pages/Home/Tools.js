@@ -12,7 +12,7 @@ const Tools = () => {
     <div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto py-16 sm:py-10 lg:py-10 lg:max-w-none">
-          <h2 className="text-4xl font-extrabold text-gray-900 text-center mb-10 font-serif">
+          <h2 className="text-4xl font-bold text-start mb-10">
             Highlight Gadgets
           </h2>
 

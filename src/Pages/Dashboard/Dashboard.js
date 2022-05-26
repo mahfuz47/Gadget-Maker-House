@@ -14,21 +14,12 @@ const Dashboard = () => {
       <Title title="Dashboard"></Title>
       <input id="dashboard-sidebar" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
-        <div className="flex justify-between items-baseline">
-          <button
-            onClick={() => navigate("/dashboard")}
-            className="rounded-xl btn-ghost text-purple-600 font-extrabold uppercase py-3 pr-4 text-3xl"
-          >
-            Dashboard
-          </button>
-
-          <button
-            onClick={() => navigate("/allTools")}
-            className="btn btn-outline btn-secondary btn-wide btn-sm text-white font-bold"
-          >
-            order again
-          </button>
-        </div>
+        <button
+          onClick={() => navigate("/dashboard")}
+          className="rounded-xl btn-ghost text-purple-600 font-extrabold uppercase py-3 pr-4 text-3xl"
+        >
+          Dashboard
+        </button>
         <Outlet></Outlet>
       </div>
       <div className="drawer-side">
