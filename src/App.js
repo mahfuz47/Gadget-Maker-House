@@ -22,6 +22,7 @@ import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import AllTools from "./Pages/Home/AllTools";
 import RequireAdmin from "./Pages/Authentication/RequireAdmin/RequireAdmin";
 import ManageProducts from "./Pages/Dashboard/ManageProducts";
+import UpdateProfile from "./Pages/Dashboard/UpdateProfile";
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
+        <Route
+          path="updateProfile"
+          element={<UpdateProfile></UpdateProfile>}
+        ></Route>
         <Route
           path="tools/:id"
           element={

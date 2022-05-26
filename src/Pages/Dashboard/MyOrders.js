@@ -38,25 +38,27 @@ const MyOrders = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Image</th>
-              <th>quantity</th>
-              <th>Price</th>
-              <th>Payment</th>
+              <th className="text-center">No.</th>
+              <th className="text-center">Name</th>
+              <th className="text-center">Image</th>
+              <th className="text-center">quantity</th>
+              <th className="text-center">Price</th>
+              <th className="text-center">Payment</th>
             </tr>
           </thead>
           <tbody>
             {orders.map((tool, index) => (
               <tr key={index}>
-                <th>{index + 1}</th>
-                <td>{tool?.tool}</td>
-                <td>
+                <th className="text-center">{index + 1}</th>
+                <td className="text-center">{tool?.tool}</td>
+                <td className="text-center">
                   <img className="w-20" src={tool?.image} alt="" />
                 </td>
-                <td>{tool.quantity ? tool.quantity : tool.order}</td>
-                <td>{tool?.price}$</td>
-                <td>
+                <td className="text-center">
+                  {tool.quantity ? tool.quantity : tool.order}
+                </td>
+                <td className="text-center">{tool?.price}$</td>
+                <td className="text-center">
                   {tool?.price && !tool?.paid && (
                     <div className="flex items-center justify-start space-x-3">
                       <Link to={`/dashboard/payment/${tool._id}`}>
@@ -94,7 +96,7 @@ const MyOrders = () => {
                           Transaction ID
                         </span>
                         :{" "}
-                        <span className="text-green-600 font-bold">
+                        <span className="text-green-600">
                           {tool?.transactionId}
                         </span>
                       </p>

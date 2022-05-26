@@ -1,39 +1,55 @@
 import React from "react";
-import myPhoto from "../../images/myPhoto.jpg";
+import { useNavigate } from "react-router-dom";
+import useProfileData from "../../Hooks/useProfileData";
 const MyProfile = () => {
-  const profileDetails = {
-    myphotourl: myPhoto,
-    name: "Mahfuz Rahman",
-    passion: "Web Developer",
-    email: "mahfuzshikder560@gmail.com",
-    phone: "+8801537384930",
-    address: "Tongi, Gazipur, Dhaka, Bangladesh",
-    education:
-      "Studies in department of English at Dhaka College, University of Dhaka.",
-    social: {
-      stackoverflow: "https://stackoverflow.com/users/18801998/mahfuz-rahman",
-      facebook: "https://www.facebook.com/mastermindmahfuzshikder47",
-      twitter: "https://twitter.com/MAHFUZ_47",
-      linkedin: "https://www.linkedin.com/in/mahfuz47/",
-      github: "https://github.com/mahfuz47",
-    },
+  const navigate = useNavigate();
+
+  const [profile] = useProfileData();
+  console.log(profile);
+  const {
+    myphotourl,
+    name,
+    email,
+    phone,
+    address,
+    education,
+    passion,
+    facebook,
+    twitter,
+    linkedin,
+    github,
+    stackoverflow,
+  } = profile;
+
+  const handleNavigate = () => {
+    navigate(`/updateProfile`);
   };
-  const { myphotourl, name, email, phone, address, education, passion } =
-    profileDetails;
-  const { facebook, twitter, linkedin, github, stackoverflow } =
-    profileDetails.social;
   return (
-    <div class="hero h-screen bg-base-200">
-      <div class="hero-content flex-col lg:flex-row">
-        <img src={myphotourl} class="max-w-sm rounded-lg shadow-2xl" alt="" />
+    <div className="hero h-full bg-base-100">
+      <div className="hero-content flex-col lg:flex-row">
+        <img
+          src={myphotourl}
+          className="max-w-sm rounded-lg shadow-2xl"
+          alt=""
+        />
         <div className="bg-white shadow overflow-hidden sm:rounded-lg">
           <div className="px-4 py-5 sm:px-6">
-            <h3 className="text-2xl font-bold leading-6  text-purple-600">
-              Profile
-            </h3>
-            <p className="mt-1 max-w-2xl text-sm text-gray-500">
-              Personal information and attachments.
-            </p>
+            <div className="flex justify-between">
+              <div>
+                <h3 className="text-2xl font-bold leading-6  text-purple-600">
+                  Profile
+                </h3>{" "}
+                <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                  Personal information and attachments.
+                </p>
+              </div>
+              <button
+                onClick={() => handleNavigate()}
+                className="btn btn-secondary btn-sm uppercase text-white"
+              >
+                Update
+              </button>
+            </div>
           </div>
           <div className="border-t border-gray-200">
             <dl>

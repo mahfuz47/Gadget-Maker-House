@@ -1,15 +1,16 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+
+import { useForm } from "react-hook-form";
 import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+import Title from "../../../Utilities/Title";
 import auth from "../../../firebase.init";
 import useToken from "../../../Hooks/useToken";
 import Loading from "../../../Utilities/Loading";
-import Title from "../../../Utilities/Title";
 
 const Login = () => {
   //React Hook Form
@@ -25,7 +26,7 @@ const Login = () => {
   //Sign in with Email and password
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  console.log(user || gUser);
+
   const [token] = useToken(user || gUser);
 
   let signInError;

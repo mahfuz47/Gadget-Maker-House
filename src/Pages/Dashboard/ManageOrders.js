@@ -32,31 +32,33 @@ const ManageOrders = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              <th>No.</th>
-              <th>Tool</th>
-              <th>Name</th>
-              <th>quantity</th>
-              <th>Payment</th>
-              <th>DELETE</th>
+              <th className="text-center">No.</th>
+              <th className="text-center">Tool</th>
+              <th className="text-center">Name</th>
+              <th className="text-center">quantity</th>
+              <th className="text-center">Payment</th>
+              <th className="text-center">DELETE</th>
             </tr>
           </thead>
           <tbody>
             {paidOrder.map((order, index) => (
               <tr key={index}>
                 <th>{index + 1}</th>
-                <td>
+                <td className="text-center">
                   <img className="w-20" src={order?.image} alt="" />
                 </td>
-                <td>{order?.tool}</td>
-                <td>{order.quantity ? order.quantity : order.order}</td>
-                <td>
+                <td className="text-center">{order?.tool}</td>
+                <td className="text-center">
+                  {order.quantity ? order.quantity : order.order}
+                </td>
+                <td className="text-center">
                   {order?.paid && (
                     <p className="text-green-400 pl-2 font-extrabold rounded-xl">
                       PAID
                     </p>
                   )}
                 </td>
-                <td>
+                <td className="text-center">
                   <button
                     onClick={() => handleDeleteOrders(order._id)}
                     className="btn btn-error btn-sm"
