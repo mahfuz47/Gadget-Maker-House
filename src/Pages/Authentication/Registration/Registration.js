@@ -38,7 +38,7 @@ const Registration = () => {
   }
 
   if (token) {
-    navigate("/dashboard");
+    navigate("/");
   }
 
   if (error || gError || updateError) {
@@ -53,7 +53,7 @@ const Registration = () => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
     toast("Account Created");
-    navigate("/dashboard");
+    navigate("/");
   };
   return (
     <>

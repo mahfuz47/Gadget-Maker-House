@@ -4,9 +4,10 @@ import useOrders from "../../Hooks/useOrders";
 
 const MyOrders = () => {
   const [orders] = useOrders();
+
   return (
     <div>
-      <h2>My Orders: {orders.length}</h2>
+      <h2 className="text-lg font-bold">Total Order: {orders.length}</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
@@ -23,19 +24,19 @@ const MyOrders = () => {
             {orders.map((tool, index) => (
               <tr key={index}>
                 <th>{index + 1}</th>
-                <td>{tool.tool}</td>
+                <td>{tool?.tool}</td>
                 <td>
-                  <img className="w-20" src={tool.image} alt="" />
+                  <img className="w-20" src={tool?.image} alt="" />
                 </td>
-                <td>{tool.quantity}</td>
-                <td>{tool.price}$</td>
+                <td>{tool.quantity ? tool.quantity : tool.order}</td>
+                <td>{tool?.price}$</td>
                 <td>
-                  {tool.price && !tool.paid && (
+                  {tool?.price && !tool?.paid && (
                     <Link to={`/dashboard/payment/${tool._id}`}>
                       <button className="btn btn-xs btn-success">pay</button>
                     </Link>
                   )}
-                  {tool.price && tool.paid && (
+                  {tool?.price && tool?.paid && (
                     <div>
                       <p>
                         <span className="text-success">Paid</span>
@@ -43,7 +44,7 @@ const MyOrders = () => {
                       <p>
                         Transaction id:{" "}
                         <span className="text-success">
-                          {tool.transactionId}
+                          {tool?.transactionId}
                         </span>
                       </p>
                     </div>

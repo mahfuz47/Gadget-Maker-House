@@ -20,6 +20,7 @@ import AddReview from "./Pages/Dashboard/AddReview";
 import AddProducts from "./Pages/Dashboard/AddProducts";
 import Payment from "./Pages/Dashboard/Payment";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
+import AllTools from "./Pages/Home/AllTools";
 
 function App() {
   return (
@@ -32,6 +33,14 @@ function App() {
           element={
             <RequireAuth>
               <Parchase></Parchase>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="allTools"
+          element={
+            <RequireAuth>
+              <AllTools></AllTools>
             </RequireAuth>
           }
         ></Route>

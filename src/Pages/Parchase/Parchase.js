@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import Loading from "../../Utilities/Loading";
@@ -14,7 +14,12 @@ const Parchase = () => {
   const { _id, toolName, toolImage, price, orderQuantity } = toolDetail;
   const [orderData, setOrderData] = useState(orderQuantity);
   useEffect(() => {
-    fetch(`http://localhost:5000/tools/${id}`)
+    fetch(`http://localhost:5000/tools/${id}`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setToolDetail(data));
   }, [id]);
@@ -30,6 +35,11 @@ const Parchase = () => {
   //
   //
 
+  const navigate = useNavigate();
+  const goToMyOrders = () => {
+    navigate("/dashboard/myOrders");
+  };
+
   const handleOrder = (event) => {
     let totalPrice = price * orderQuantity;
     const order = {
@@ -40,6 +50,7 @@ const Parchase = () => {
       price: totalPrice,
       image: toolImage,
       quantity: orderData,
+      order: orderQuantity,
     };
     fetch(`http://localhost:5000/orders`, {
       method: "POST",
@@ -138,13 +149,21 @@ const Parchase = () => {
         </div>
         <div>
           <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-            <div className="px-4 py-5 sm:px-6">
-              <h3 className="text-xl font-bold leading-6 font-mono text-gray-900">
-                {toolDetail?.toolName}
-              </h3>
-              <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                Details and Parchase functionalities.
-              </p>
+            <div className="px-4 py-5 sm:px-6 flex justify-between items-center">
+              <div>
+                <h3 className="text-xl font-bold leading-6 font-mono text-gray-900">
+                  {toolDetail?.toolName}
+                </h3>
+                <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                  Details and Parchase functionalities.
+                </p>
+              </div>
+              <button
+                onClick={goToMyOrders}
+                className="btn btn-outline btn-secondary btn-sm uppercase"
+              >
+                my orders
+              </button>
             </div>
             <div className="border-t border-gray-200">
               <dl>
