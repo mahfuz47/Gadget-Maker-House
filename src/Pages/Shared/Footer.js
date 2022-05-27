@@ -5,8 +5,8 @@ const Footer = () => {
     <div className=" mt-10 pt-10 py-4">
       <p className="text-center">
         <small className="text-xs font-weight: 100">
-          ©2022 Automobiles Motor Sales, U.S.A., Inc. All information applies to
-          U.S. vehicles only.
+          ©2022 Gadget House Maker, U.S.A., Inc. All information applies to U.S.
+          Manufacturer only.
           <br />
           The use of Olympic Marks, Terminology and Imagery is authorized by the
           U.S. Olympic & Paralympic Committee pursuant to Title 36 U.S. Code
