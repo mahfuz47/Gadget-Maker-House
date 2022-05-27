@@ -23,6 +23,7 @@ import AllTools from "./Pages/Home/AllTools";
 import RequireAdmin from "./Pages/Authentication/RequireAdmin/RequireAdmin";
 import ManageProducts from "./Pages/Dashboard/ManageProducts";
 import UpdateProfile from "./Pages/Dashboard/UpdateProfile";
+import DealershipQuery from "./Pages/Dashboard/DealershipQuery";
 
 function App() {
   return (
@@ -92,6 +93,14 @@ function App() {
             element={
               <RequireAdmin>
                 <ManageProducts></ManageProducts>
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="dealersQuery"
+            element={
+              <RequireAdmin>
+                <DealershipQuery></DealershipQuery>
               </RequireAdmin>
             }
           ></Route>
