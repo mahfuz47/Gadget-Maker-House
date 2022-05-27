@@ -5,7 +5,7 @@ const useProfileData = () => {
   const [profile, setProfile] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/profile")
+      .get("https://polar-refuge-25611.herokuapp.com/profile")
       .then((data) => setProfile(data.data[0]));
   }, []);
 

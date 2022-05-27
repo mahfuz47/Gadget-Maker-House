@@ -37,7 +37,7 @@ const AddReview = () => {
             orderQuantity: data.orderQuantity,
           };
           // send to database
-          fetch("http://localhost:5000/tools", {
+          fetch("https://polar-refuge-25611.herokuapp.com/tools", {
             method: "POST",
             headers: {
               "content-type": "application/json",

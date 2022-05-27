@@ -15,7 +15,7 @@ const Payment = () => {
   const { id } = useParams();
 
   const { data: order, isLoading } = useQuery(["orders", id], () =>
-    fetch(`http://localhost:5000/orders/${id}`, {
+    fetch(`https://polar-refuge-25611.herokuapp.com/orders/${id}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -26,7 +26,7 @@ const Payment = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
-  console.log(order._id);
+
   return (
     <div className="flex justify-center items-center h-screen">
       <Title title="Payment"></Title>

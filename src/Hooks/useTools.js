@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useTools = () => {
   const [tools, setTools] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/tools", {
+    fetch("https://polar-refuge-25611.herokuapp.com/tools", {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

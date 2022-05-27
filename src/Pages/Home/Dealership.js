@@ -16,7 +16,7 @@ const Dealership = () => {
       phone: data.phone,
     };
     // send to database
-    fetch("http://localhost:5000/info", {
+    fetch("https://polar-refuge-25611.herokuapp.com/info", {
       method: "POST",
       headers: {
         "content-type": "application/json",

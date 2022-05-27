@@ -20,7 +20,7 @@ const UpdateProfile = () => {
   const handleDeleteData = (id) => {
     const proceedDelete = window.confirm("Are you sure to delete?");
     if (proceedDelete) {
-      const url = `http://localhost:5000/profile/${id}`;
+      const url = `https://polar-refuge-25611.herokuapp.com/profile/${id}`;
       fetch(url, {
         method: "DELETE",
         headers: {
@@ -29,7 +29,6 @@ const UpdateProfile = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           const remaining = profile.filter((data) => data._id !== id);
           toast("Data Cleared");
           setProfile(remaining);
@@ -49,7 +48,6 @@ const UpdateProfile = () => {
       .then((result) => {
         if (result.success) {
           const myPhoto = result.data.url;
-          console.log(myPhoto);
           const profile = {
             name: user?.displayName,
             passion: data.passion,
@@ -65,7 +63,7 @@ const UpdateProfile = () => {
             github: data.github,
           };
           // send to database
-          fetch(`http://localhost:5000/profile`, {
+          fetch(`https://polar-refuge-25611.herokuapp.com/profile`, {
             method: "POST",
             headers: {
               "content-type": "application/json",

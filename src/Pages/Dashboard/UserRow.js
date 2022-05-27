@@ -5,7 +5,7 @@ const UserRow = ({ user, refetch, index }) => {
   const [users, setUsers] = useState([]);
   const { email, role, _id } = user;
   const makeAdmin = () => {
-    fetch(`http://localhost:5000/users/admin/${email}`, {
+    fetch(`https://polar-refuge-25611.herokuapp.com/users/admin/${email}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -29,7 +29,7 @@ const UserRow = ({ user, refetch, index }) => {
   const handleRemoveUsers = (id) => {
     const proceedDelete = window.confirm("Are you sure to delete user?");
     if (proceedDelete) {
-      const url = `http://localhost:5000/users/${email}`;
+      const url = `https://polar-refuge-25611.herokuapp.com/users/${email}`;
       fetch(url, {
         method: "DELETE",
         headers: {
@@ -38,7 +38,6 @@ const UserRow = ({ user, refetch, index }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           const remaining = users.filter((user) => user._id !== id);
           setUsers(remaining);
         });

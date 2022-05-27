@@ -9,7 +9,7 @@ const MyOrders = () => {
   const handleDeleteOrders = (id) => {
     const proceedDelete = window.confirm("Are you sure to delete?");
     if (proceedDelete) {
-      const url = `http://localhost:5000/orders/${id}`;
+      const url = `https://polar-refuge-25611.herokuapp.com/orders/${id}`;
       fetch(url, {
         method: "DELETE",
         headers: {
@@ -18,7 +18,6 @@ const MyOrders = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           const remaining = orders.filter((order) => order._id !== id);
           setOrders(remaining);
         });

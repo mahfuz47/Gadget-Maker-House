@@ -6,7 +6,7 @@ const Features = () => {
       <div className="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:static">
           <div className="sm:max-w-lg">
-            <h1 className="text-4xl font font-extrabold tracking-tight text-gray-900 sm:text-6xl">
+            <h1 className="text-4xl font font-extrabold tracking-tight text-indigo-700 sm:text-6xl">
               Have A look!
             </h1>
             <p className="mt-4 text-xl texxt-gray-500">

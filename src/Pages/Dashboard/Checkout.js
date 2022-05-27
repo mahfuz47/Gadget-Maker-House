@@ -14,7 +14,7 @@ const CheckoutForm = ({ order }) => {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment", {
+    fetch("https://polar-refuge-25611.herokuapp.com/create-payment", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -81,7 +81,7 @@ const CheckoutForm = ({ order }) => {
         order: _id,
         transactionId: paymentIntent.id,
       };
-      fetch(`http://localhost:5000/orders/${_id}`, {
+      fetch(`https://polar-refuge-25611.herokuapp.com/orders/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
@@ -90,9 +90,7 @@ const CheckoutForm = ({ order }) => {
         body: JSON.stringify(payment),
       })
         .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-        });
+        .then((data) => {});
     }
   };
 

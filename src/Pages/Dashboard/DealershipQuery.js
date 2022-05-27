@@ -4,7 +4,7 @@ import Title from "../../Utilities/Title";
 const DealershipQuery = () => {
   const [dealers, setDealers] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/info`, {
+    fetch(`https://polar-refuge-25611.herokuapp.com/info`, {
       method: "GET",
       headers: {
         "content-type": "application/json",

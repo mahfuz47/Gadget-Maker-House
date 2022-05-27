@@ -5,7 +5,7 @@ const useReviews = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/reviews")
+      .get("https://polar-refuge-25611.herokuapp.com/reviews")
       .then((data) => setReviews(data.data));
   }, []);
 

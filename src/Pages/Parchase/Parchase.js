@@ -9,12 +9,11 @@ import Title from "../../Utilities/Title";
 const Parchase = () => {
   const { id } = useParams();
   const [user, loading] = useAuthState(auth);
-  // const [available, setAvailable] = useState();
   const [toolDetail, setToolDetail] = useState({});
   const { _id, toolName, toolImage, price, orderQuantity } = toolDetail;
   const [orderData, setOrderData] = useState(orderQuantity);
   useEffect(() => {
-    fetch(`http://localhost:5000/tools/${id}`, {
+    fetch(`https://polar-refuge-25611.herokuapp.com/tools/${id}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -23,17 +22,6 @@ const Parchase = () => {
       .then((res) => res.json())
       .then((data) => setToolDetail(data));
   }, [id]);
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/orders/${id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setAvailable(data[0]));
-  // }, [id]);
-  // console.log(available.quantity);
-  //
-  //
-  //Handle Order
-  //
-  //
 
   const navigate = useNavigate();
   const goToMyOrders = () => {
@@ -52,7 +40,7 @@ const Parchase = () => {
       quantity: orderData,
       order: orderQuantity,
     };
-    fetch(`http://localhost:5000/orders`, {
+    fetch(`https://polar-refuge-25611.herokuapp.com/orders`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -68,11 +56,6 @@ const Parchase = () => {
         }
       });
   };
-  console.log(orderData);
-  // const restQuantity = {
-  //   quantityData: availableQuantity - available,
-  // };
-  // const { quantityData } = restQuantity;
 
   const minusQuantity = (quantity) => {
     let totalQuantity = parseInt(quantity) - 10;
