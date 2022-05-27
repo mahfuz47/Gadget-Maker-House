@@ -8,7 +8,7 @@ const useProfileData = () => {
       .get("http://localhost:5000/profile")
       .then((data) => setProfile(data.data[0]));
   }, []);
-  console.log(profile);
+
   return [profile, setProfile];
 };
 

@@ -63,7 +63,7 @@ const ManageOrders = () => {
                     onClick={() => handleDeleteOrders(order._id)}
                     className="btn btn-error btn-sm"
                   >
-                    Cancel Order
+                    Cancel Order And Refund
                   </button>
                 </td>
               </tr>

@@ -1,9 +1,14 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import auth from "../../firebase.init";
+import useProfileData from "../../Hooks/useProfileData";
 const UpdateProfile = () => {
+  const { id } = useParams();
+  const [user] = useAuthState(auth);
+  const [profile, setProfile] = useProfileData();
   const {
     register,
     formState: { errors },
@@ -11,7 +16,25 @@ const UpdateProfile = () => {
     reset,
   } = useForm();
   const imageStorageKey = "660e13aa92adcb40f7f24dc490320425";
-
+  const handleDeleteData = (id) => {
+    const proceedDelete = window.confirm("Are you sure to delete?");
+    if (proceedDelete) {
+      const url = `http://localhost:5000/profile/${id}`;
+      fetch(url, {
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          const remaining = profile.filter((data) => data._id !== id);
+          toast("Data Cleared");
+          setProfile(remaining);
+        });
+    }
+  };
   const onSubmit = async (data) => {
     const image = data.image[0];
     const formData = new FormData();
@@ -27,9 +50,9 @@ const UpdateProfile = () => {
           const myPhoto = result.data.url;
           console.log(myPhoto);
           const profile = {
-            name: data.name,
+            name: user?.displayName,
             passion: data.passion,
-            email: data.email,
+            email: user.email,
             myphotourl: myPhoto,
             phone: data.phone,
             address: data.address,
@@ -42,7 +65,7 @@ const UpdateProfile = () => {
           };
           // send to database
           fetch(`http://localhost:5000/profile`, {
-            method: "PATCH",
+            method: "POST",
             headers: {
               "content-type": "application/json",
               authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -51,13 +74,12 @@ const UpdateProfile = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              if (data) {
-                toast("Profile Updated");
+              if (data.success) {
+                toast.success("Profile Updated");
                 reset();
               } else {
-                toast("Failed To Update");
+                toast.error("Please Clear the Data first");
               }
-              console.log(data);
             });
         }
       });
@@ -68,6 +90,14 @@ const UpdateProfile = () => {
         <h2 className="text-3xl text-indigo-700 font-bold text-center uppercase">
           Update Profile
         </h2>
+        <div className="flex justify-end">
+          <button
+            onClick={() => handleDeleteData(id)}
+            className="btn-sm btn-secondary btn text-white"
+          >
+            Clear Data
+          </button>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control w-full">
             <label className="label">
@@ -75,23 +105,12 @@ const UpdateProfile = () => {
             </label>
             <input
               type="text"
-              placeholder="Product Name"
+              placeholder="Your Name"
               className="input
               input-bordered w-full"
-              {...register("name", {
-                required: {
-                  value: true,
-                  message: "Name is Required",
-                },
-              })}
+              value={user?.displayName}
+              disabled
             />
-            <label className="label">
-              {errors.name?.type === "required" && (
-                <span className="label-text font-bold-alt text-red-500">
-                  {errors.name?.message}
-                </span>
-              )}
-            </label>
           </div>
           <div className="form-control w-full">
             <label className="label">
@@ -99,32 +118,11 @@ const UpdateProfile = () => {
             </label>
             <input
               type="email"
-              placeholder="Your Email"
               className="input
               input-bordered w-full"
-              {...register("email", {
-                required: {
-                  value: true,
-                  message: "Email Is Required",
-                },
-                pattern: {
-                  value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                  message: "Provide a valid Email",
-                },
-              })}
+              value={user?.email}
+              disabled
             />
-            <label className="label">
-              {errors.email?.type === "required" && (
-                <span className="label-text-alt text-red-500">
-                  {errors?.email?.message}
-                </span>
-              )}
-              {errors.email?.type === "pattern" && (
-                <span className="label-text-alt text-red-500">
-                  {errors?.email?.message}
-                </span>
-              )}
-            </label>
           </div>
           <div className="form-control w-full">
             <label className="label">

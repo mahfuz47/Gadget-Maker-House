@@ -31,7 +31,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route
-          path="updateProfile"
+          path="updateProfile/:id"
           element={<UpdateProfile></UpdateProfile>}
         ></Route>
         <Route

@@ -6,29 +6,15 @@ const MyProfile = () => {
 
   const [profile] = useProfileData();
   console.log(profile);
-  const {
-    myphotourl,
-    name,
-    email,
-    phone,
-    address,
-    education,
-    passion,
-    facebook,
-    twitter,
-    linkedin,
-    github,
-    stackoverflow,
-  } = profile;
 
-  const handleNavigate = () => {
-    navigate(`/updateProfile`);
+  const handleNavigate = (id) => {
+    navigate(`/updateProfile/${id}`);
   };
   return (
     <div className="hero h-full bg-base-100">
       <div className="hero-content flex-col lg:flex-row">
         <img
-          src={myphotourl}
+          src={profile ? profile.myphotourl : ""}
           className="max-w-sm rounded-lg shadow-2xl"
           alt=""
         />
@@ -44,7 +30,7 @@ const MyProfile = () => {
                 </p>
               </div>
               <button
-                onClick={() => handleNavigate()}
+                onClick={() => handleNavigate(profile?._id)}
                 className="btn btn-secondary btn-sm uppercase text-white"
               >
                 Update
@@ -54,41 +40,39 @@ const MyProfile = () => {
           <div className="border-t border-gray-200">
             <dl>
               <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-medium text-gray-500">Full name</dt>
+                <dt className="text-sm font-medium text-gray-500">Name</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {name}
+                  {profile ? profile?.name : ""}
                 </dd>
               </div>
               <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Email</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {email}
+                  {profile ? profile?.email : ""}
                 </dd>
               </div>
               <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-medium text-gray-500">
-                  Email address
-                </dt>
+                <dt className="text-sm font-medium text-gray-500">Education</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {education}
+                  {profile ? profile?.education : ""}
                 </dd>
               </div>
               <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Phone</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {phone}
+                  {profile ? profile?.phone : ""}
                 </dd>
               </div>
               <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Address</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {address}
+                  {profile ? profile?.address : ""}
                 </dd>
               </div>
               <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Passion</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {passion}
+                  {profile ? profile?.passion : ""}
                 </dd>
               </div>
               <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -100,7 +84,7 @@ const MyProfile = () => {
                     className="text-indigo-500 hover:text-indigo-600 no-underline px-1 font-bold btn-ghost rounded-xl py-1"
                     target="_blank"
                     rel="noreferrer"
-                    href={facebook}
+                    href={profile ? profile?.facebook : ""}
                   >
                     Facebook
                   </a>
@@ -108,7 +92,7 @@ const MyProfile = () => {
                     className="text-indigo-500 hover:text-indigo-600 no-underline px-1 font-bold btn-ghost rounded-xl py-1"
                     target="_blank"
                     rel="noreferrer"
-                    href={twitter}
+                    href={profile ? profile?.twitter : ""}
                   >
                     Twitter
                   </a>
@@ -116,7 +100,7 @@ const MyProfile = () => {
                     className="text-indigo-500 hover:text-indigo-600 no-underline px-1 font-bold btn-ghost rounded-xl py-1"
                     target="_blank"
                     rel="noreferrer"
-                    href={github}
+                    href={profile ? profile?.github : ""}
                   >
                     Git Hub
                   </a>
@@ -124,7 +108,7 @@ const MyProfile = () => {
                     className="text-indigo-500 hover:text-indigo-600 no-underline px-1 font-bold btn-ghost rounded-xl py-1"
                     target="_blank"
                     rel="noreferrer"
-                    href={stackoverflow}
+                    href={profile ? profile?.stackoverflow : ""}
                   >
                     Stackoverflow
                   </a>
@@ -132,7 +116,7 @@ const MyProfile = () => {
                     className="text-indigo-500 hover:text-indigo-600 no-underline px-1 font-bold btn-ghost rounded-xl py-1"
                     target="_blank"
                     rel="noreferrer"
-                    href={linkedin}
+                    href={profile ? profile?.linkedin : ""}
                   >
                     Linkedin
                   </a>
