@@ -8,7 +8,6 @@ import quote from "../../images/quote.svg";
 
 const Reviews = () => {
   const [reviews] = useReviews();
-  console.log(reviews);
   return (
     <>
       <div className="flex justify-end">
@@ -31,7 +30,7 @@ const Reviews = () => {
           className="h-[380px] "
         >
           {reviews.map((review) => (
-            <SwiperSlide>
+            <SwiperSlide key={review._id}>
               <Review key={review._id} review={review}></Review>
             </SwiperSlide>
           ))}

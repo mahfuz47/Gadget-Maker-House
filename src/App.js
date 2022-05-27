@@ -25,6 +25,7 @@ import ManageProducts from "./Pages/Dashboard/ManageProducts";
 import UpdateProfile from "./Pages/Dashboard/UpdateProfile";
 import DealershipQuery from "./Pages/Dashboard/DealershipQuery";
 import Blogs from "./Pages/Blogs/Blogs";
+import MyPortfolio from "./Pages/Portfolio/MyPortfolio";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           element={<UpdateProfile></UpdateProfile>}
         ></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
+        <Route path="/portfolio" element={<MyPortfolio></MyPortfolio>}></Route>
         <Route
           path="tools/:id"
           element={

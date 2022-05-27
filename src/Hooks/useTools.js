@@ -12,7 +12,7 @@ const useTools = () => {
       .then((res) => res.json())
       .then((data) => setTools(data));
   }, []);
-  console.log(tools);
+
   return [tools];
 };
 

@@ -4,6 +4,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Loading from "../../Utilities/Loading";
+import Title from "../../Utilities/Title";
 import Checkout from "./Checkout";
 
 const stripePromise = loadStripe(
@@ -28,6 +29,7 @@ const Payment = () => {
   console.log(order._id);
   return (
     <div className="flex justify-center items-center h-screen">
+      <Title title="Payment"></Title>
       <div>
         <div className="card w-50 max-w-md bg-base-100 shadow-xl my-12 border-2 border-solid">
           <div className="card-body">

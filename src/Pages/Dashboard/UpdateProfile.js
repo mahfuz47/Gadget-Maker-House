@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import useProfileData from "../../Hooks/useProfileData";
+import Title from "../../Utilities/Title";
 const UpdateProfile = () => {
   const { id } = useParams();
   const [user] = useAuthState(auth);
@@ -86,6 +87,7 @@ const UpdateProfile = () => {
   };
   return (
     <div className="flex min-h-screen justify-center items-center">
+      <Title title="Update"></Title>
       <div className="card w-6/12 bg-base-100 shadow-xl px-3">
         <h2 className="text-3xl text-indigo-700 font-bold text-center uppercase">
           Update Profile

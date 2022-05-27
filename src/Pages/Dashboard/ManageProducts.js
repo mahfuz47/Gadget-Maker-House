@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import useTools from "../../Hooks/useTools";
+import Title from "../../Utilities/Title";
 
 const ManageProducts = () => {
   const [tools, setTools] = useTools();
@@ -26,6 +27,7 @@ const ManageProducts = () => {
   return (
     <div>
       <div className="flex justify-between items-baseline">
+        <Title title="Manage Products"></Title>
         <h2 className="text-lg font-bold">Total Order: {tools.length}</h2>
         <button
           onClick={() => navigate("/allTools")}

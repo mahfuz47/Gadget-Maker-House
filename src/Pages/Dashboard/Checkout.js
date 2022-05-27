@@ -13,7 +13,6 @@ const CheckoutForm = ({ order }) => {
   const [transactionId, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
 
-  console.log(_id);
   useEffect(() => {
     fetch("http://localhost:5000/create-payment", {
       method: "POST",
@@ -74,7 +73,7 @@ const CheckoutForm = ({ order }) => {
     } else {
       setCardError("");
       setTransactionId(paymentIntent.id);
-      console.log(paymentIntent);
+
       setSuccess("Congrats! Your payment is completed.");
 
       //store payment on database

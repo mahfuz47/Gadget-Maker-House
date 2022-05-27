@@ -1,42 +1,25 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import useProfileData from "../../Hooks/useProfileData";
 import Title from "../../Utilities/Title";
-const MyProfile = () => {
-  const navigate = useNavigate();
 
-  const [profile] = useProfileData();
-  console.log(profile);
-
-  const handleNavigate = (id) => {
-    navigate(`/updateProfile/${id}`);
-  };
+const MyPortfolio = () => {
   return (
     <div className="hero h-full bg-base-100">
-      <Title title="Profile"></Title>
+      <Title title="Portfolio"></Title>
       <div className="hero-content flex-col lg:flex-row">
         <img
-          src={profile ? profile.myphotourl : ""}
+          src="https://i.ibb.co/qgccWxp/photo-2022-03-13-23-12-19.jpg"
           className="max-w-sm rounded-lg shadow-2xl"
           alt=""
         />
         <div className="bg-white shadow overflow-hidden sm:rounded-lg">
           <div className="px-4 py-5 sm:px-6">
-            <div className="flex justify-between">
-              <div>
-                <h3 className="text-2xl font-bold leading-6  text-purple-600">
-                  Profile
-                </h3>{" "}
-                <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                  Personal information and attachments.
-                </p>
-              </div>
-              <button
-                onClick={() => handleNavigate(profile?._id)}
-                className="btn btn-secondary btn-sm uppercase text-white"
-              >
-                Update
-              </button>
+            <div>
+              <h3 className="text-2xl font-bold leading-6  text-purple-600">
+                Profile
+              </h3>{" "}
+              <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                Personal information and attachments.
+              </p>
             </div>
           </div>
           <div className="border-t border-gray-200">
@@ -44,37 +27,38 @@ const MyProfile = () => {
               <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Name</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {profile ? profile?.name : ""}
+                  Mahfuz Rahman
                 </dd>
               </div>
               <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Email</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {profile ? profile?.email : ""}
+                  mahfuzshikder560@gmail.com
                 </dd>
               </div>
               <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Education</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {profile ? profile?.education : ""}
+                  Studies in department of English at Dhaka College, University
+                  of Dhaka.
                 </dd>
               </div>
               <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Phone</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {profile ? profile?.phone : ""}
+                  +8801537384930
                 </dd>
               </div>
               <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Address</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {profile ? profile?.address : ""}
+                  Tongi, Gazipur, Dhaka, Bangladesh.
                 </dd>
               </div>
               <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Passion</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {profile ? profile?.passion : ""}
+                  Web Developer
                 </dd>
               </div>
               <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -86,7 +70,7 @@ const MyProfile = () => {
                     className="text-indigo-500 hover:text-indigo-600 no-underline px-1 font-bold btn-ghost rounded-xl py-1"
                     target="_blank"
                     rel="noreferrer"
-                    href={profile ? profile?.facebook : ""}
+                    href="https://www.facebook.com/mastermindmahfuzshikder47"
                   >
                     Facebook
                   </a>
@@ -94,7 +78,7 @@ const MyProfile = () => {
                     className="text-indigo-500 hover:text-indigo-600 no-underline px-1 font-bold btn-ghost rounded-xl py-1"
                     target="_blank"
                     rel="noreferrer"
-                    href={profile ? profile?.twitter : ""}
+                    href="https://twitter.com/MAHFUZ_47"
                   >
                     Twitter
                   </a>
@@ -102,7 +86,7 @@ const MyProfile = () => {
                     className="text-indigo-500 hover:text-indigo-600 no-underline px-1 font-bold btn-ghost rounded-xl py-1"
                     target="_blank"
                     rel="noreferrer"
-                    href={profile ? profile?.github : ""}
+                    href="https://github.com/mahfuz47"
                   >
                     Git Hub
                   </a>
@@ -110,7 +94,7 @@ const MyProfile = () => {
                     className="text-indigo-500 hover:text-indigo-600 no-underline px-1 font-bold btn-ghost rounded-xl py-1"
                     target="_blank"
                     rel="noreferrer"
-                    href={profile ? profile?.stackoverflow : ""}
+                    href="https://stackoverflow.com/users/18801998/mahfuz-rahman"
                   >
                     Stackoverflow
                   </a>
@@ -118,7 +102,7 @@ const MyProfile = () => {
                     className="text-indigo-500 hover:text-indigo-600 no-underline px-1 font-bold btn-ghost rounded-xl py-1"
                     target="_blank"
                     rel="noreferrer"
-                    href={profile ? profile?.linkedin : ""}
+                    href="https://www.linkedin.com/in/mahfuz47/"
                   >
                     Linkedin
                   </a>
@@ -132,4 +116,4 @@ const MyProfile = () => {
   );
 };
 
-export default MyProfile;
+export default MyPortfolio;

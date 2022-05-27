@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import Loading from "../../Utilities/Loading";
+import Title from "../../Utilities/Title";
 import UserRow from "./UserRow";
 
 const MakeAdmin = () => {
@@ -22,6 +23,7 @@ const MakeAdmin = () => {
   }
   return (
     <div>
+      <Title title="Make Admin"></Title>
       <h2 className="text-2xl">All Users {users.length}</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">

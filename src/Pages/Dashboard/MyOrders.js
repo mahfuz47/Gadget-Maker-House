@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useOrders from "../../Hooks/useOrders";
+import Title from "../../Utilities/Title";
 
 const MyOrders = () => {
   const [orders, setOrders] = useOrders();
@@ -25,6 +26,7 @@ const MyOrders = () => {
   };
   return (
     <div>
+      <Title title="My Orders"></Title>
       <div className="flex justify-between items-baseline">
         <h2 className="text-lg font-bold">Total Order: {orders.length}</h2>
         <button

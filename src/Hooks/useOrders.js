@@ -17,7 +17,6 @@ const useOrders = () => {
         },
       })
         .then((res) => {
-          console.log(res);
           if (res.status === 401 || res.status === 403) {
             signOut(auth);
             localStorage.removeItem("accessToken");
@@ -30,7 +29,6 @@ const useOrders = () => {
         });
     }
   }, [navigate, user]);
-  console.log(orders);
   return [orders, setOrders];
 };
 

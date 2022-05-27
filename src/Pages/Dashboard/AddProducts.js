@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import Title from "../../Utilities/Title";
 
 const AddReview = () => {
   const {
@@ -25,7 +26,6 @@ const AddReview = () => {
       .then((result) => {
         if (result.success) {
           const toolImage = result.data.url;
-          console.log(toolImage);
           const review = {
             toolName: data.toolName,
             description: data.description,
@@ -60,6 +60,7 @@ const AddReview = () => {
 
   return (
     <div className="flex min-h-screen justify-center items-center">
+      <Title title="Add Products"></Title>
       <div className="card w-6/12 bg-base-100 shadow-xl px-3">
         <h2 className="text-3xl text-indigo-700 font-bold text-center uppercase">
           Add a Review

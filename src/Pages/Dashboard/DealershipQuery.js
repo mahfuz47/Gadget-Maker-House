@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Title from "../../Utilities/Title";
 
 const DealershipQuery = () => {
   const [dealers, setDealers] = useState([]);
@@ -16,15 +17,16 @@ const DealershipQuery = () => {
   return (
     <div>
       <div className="flex justify-between items-baseline">
+        <Title title="Queries"></Title>
         <h2 className="text-lg font-bold">Total Query: {dealers.length}</h2>
       </div>
       <div className="grid grid-cols-4 sm:grid-cols-2">
         {dealers.map((dealer) => (
-          <div key={dealer._id} class="card bg-base-200 shadow-xl">
-            <div class="card-body">
-              <h2 class="card-title text-center">{dealer?.name}</h2>
+          <div key={dealer._id} className="card bg-base-200 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title text-center">{dealer?.name}</h2>
               <p>{dealer.query}</p>
-              <div class="card-actions justify-center">{dealer.phone}</div>
+              <div className="card-actions justify-center">{dealer.phone}</div>
             </div>
           </div>
         ))}
