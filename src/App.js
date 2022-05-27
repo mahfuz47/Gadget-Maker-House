@@ -24,6 +24,7 @@ import RequireAdmin from "./Pages/Authentication/RequireAdmin/RequireAdmin";
 import ManageProducts from "./Pages/Dashboard/ManageProducts";
 import UpdateProfile from "./Pages/Dashboard/UpdateProfile";
 import DealershipQuery from "./Pages/Dashboard/DealershipQuery";
+import Blogs from "./Pages/Blogs/Blogs";
 
 function App() {
   return (
@@ -31,10 +32,12 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
+
         <Route
           path="updateProfile/:id"
           element={<UpdateProfile></UpdateProfile>}
         ></Route>
+        <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route
           path="tools/:id"
           element={
