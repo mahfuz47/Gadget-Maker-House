@@ -8,8 +8,14 @@
 
 #### [Server side code link](https://github.com/programming-hero-web-course1/manufacturer-website-server-side-mahfuz47)
 
--
--
+#### Admin Email: mahfuzshikder560@gmail.com
+
+##### Password: 12345678
+
+- Please do not use this details for any unusual purpose.
+
+*
+*
 
 #### `Installations`
 
