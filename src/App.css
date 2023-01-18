@@ -25,6 +25,27 @@
   color: white;
 }
 
+.input-default {
+  @apply form-control
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-[#2e2e2e]
+        bg-[#f7f7ff] bg-clip-padding
+        border border-gray-300
+        rounded
+        transition-all
+        duration-200
+        ease-in-out
+        m-0;
+}
+
+.social-button {
+  @apply btn btn-accent btn-ghost shadow-lg border-none py-1 rounded-lg grid justify-items-center cursor-pointer;
+}
+
 .App-link {
   color: #61dafb;
 }
