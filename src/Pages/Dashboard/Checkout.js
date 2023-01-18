@@ -14,7 +14,7 @@ const CheckoutForm = ({ order }) => {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    fetch("https://polar-refuge-25611.herokuapp.com/create-payment", {
+    fetch("https://gadget-maker-house-server.onrender.com/create-payment", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -81,7 +81,7 @@ const CheckoutForm = ({ order }) => {
         order: _id,
         transactionId: paymentIntent.id,
       };
-      fetch(`https://polar-refuge-25611.herokuapp.com/orders/${_id}`, {
+      fetch(`https://gadget-maker-house-server.onrender.com/orders/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

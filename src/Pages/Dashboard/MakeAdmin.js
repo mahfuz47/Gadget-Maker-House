@@ -10,7 +10,7 @@ const MakeAdmin = () => {
     isLoading,
     refetch,
   } = useQuery("users", () =>
-    fetch("https://polar-refuge-25611.herokuapp.com/users", {
+    fetch("https://gadget-maker-house-server.onrender.com/users", {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

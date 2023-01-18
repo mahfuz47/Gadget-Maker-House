@@ -33,7 +33,7 @@ const AddReview = () => {
             img: img,
           };
           // send to database
-          fetch("https://polar-refuge-25611.herokuapp.com/reviews", {
+          fetch("https://gadget-maker-house-server.onrender.com/reviews", {
             method: "POST",
             headers: {
               "content-type": "application/json",

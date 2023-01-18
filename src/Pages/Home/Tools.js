@@ -31,7 +31,7 @@ const Tools = () => {
                 />
                 {/* Product Name */}
                 <a href="/tools/:id">
-                  <h3 className="mt-6 text-lg font-bold font-sans text-slate-900">
+                  <h3 className="mt-6 text-lg font-bold text-slate-900">
                     {tool.toolName}
                   </h3>
                 </a>

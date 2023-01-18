@@ -37,7 +37,7 @@ const AddReview = () => {
             orderQuantity: data.orderQuantity,
           };
           // send to database
-          fetch("https://polar-refuge-25611.herokuapp.com/tools", {
+          fetch("https://gadget-maker-house-server.onrender.com/tools", {
             method: "POST",
             headers: {
               "content-type": "application/json",

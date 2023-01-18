@@ -6,7 +6,7 @@ const useToken = (user) => {
     const email = user?.user?.email;
     const currentUser = { email: email };
     if (email) {
-      fetch(`https://polar-refuge-25611.herokuapp.com/users/${email}`, {
+      fetch(`https://gadget-maker-house-server.onrender.com/users/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

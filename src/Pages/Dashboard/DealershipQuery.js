@@ -4,7 +4,7 @@ import Title from "../../Utilities/Title";
 const DealershipQuery = () => {
   const [dealers, setDealers] = useState([]);
   useEffect(() => {
-    fetch(`https://polar-refuge-25611.herokuapp.com/info`, {
+    fetch(`https://gadget-maker-house-server.onrender.com/info`, {
       method: "GET",
       headers: {
         "content-type": "application/json",

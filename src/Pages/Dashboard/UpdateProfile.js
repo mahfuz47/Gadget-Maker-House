@@ -20,7 +20,7 @@ const UpdateProfile = () => {
   const handleDeleteData = (id) => {
     const proceedDelete = window.confirm("Are you sure to delete?");
     if (proceedDelete) {
-      const url = `https://polar-refuge-25611.herokuapp.com/profile/${id}`;
+      const url = `https://gadget-maker-house-server.onrender.com/profile/${id}`;
       fetch(url, {
         method: "DELETE",
         headers: {
@@ -63,7 +63,7 @@ const UpdateProfile = () => {
             github: data.github,
           };
           // send to database
-          fetch(`https://polar-refuge-25611.herokuapp.com/profile`, {
+          fetch(`https://gadget-maker-house-server.onrender.com/profile`, {
             method: "POST",
             headers: {
               "content-type": "application/json",

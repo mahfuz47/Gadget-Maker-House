@@ -5,12 +5,15 @@ const UserRow = ({ user, refetch, index }) => {
   const [users, setUsers] = useState([]);
   const { email, role, _id } = user;
   const makeAdmin = () => {
-    fetch(`https://polar-refuge-25611.herokuapp.com/users/admin/${email}`, {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://gadget-maker-house-server.onrender.com/users/admin/${email}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 403) {
           toast("Failed to make an admin");
@@ -29,7 +32,7 @@ const UserRow = ({ user, refetch, index }) => {
   const handleRemoveUsers = (id) => {
     const proceedDelete = window.confirm("Are you sure to delete user?");
     if (proceedDelete) {
-      const url = `https://polar-refuge-25611.herokuapp.com/users/${email}`;
+      const url = `https://gadget-maker-house-server.onrender.com/users/${email}`;
       fetch(url, {
         method: "DELETE",
         headers: {

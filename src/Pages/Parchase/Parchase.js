@@ -13,7 +13,7 @@ const Parchase = () => {
   const { _id, toolName, toolImage, price, orderQuantity } = toolDetail;
   const [orderData, setOrderData] = useState(orderQuantity);
   useEffect(() => {
-    fetch(`https://polar-refuge-25611.herokuapp.com/tools/${id}`, {
+    fetch(`https://gadget-maker-house-server.onrender.com/tools/${id}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -40,7 +40,7 @@ const Parchase = () => {
       quantity: orderData,
       order: orderQuantity,
     };
-    fetch(`https://polar-refuge-25611.herokuapp.com/orders`, {
+    fetch(`https://gadget-maker-house-server.onrender.com/orders`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

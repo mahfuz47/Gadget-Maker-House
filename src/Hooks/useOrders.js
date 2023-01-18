@@ -11,7 +11,7 @@ const useOrders = () => {
   useEffect(() => {
     if (user) {
       fetch(
-        `https://polar-refuge-25611.herokuapp.com/orders?email=${user.email}`,
+        `https://gadget-maker-house-server.onrender.com/orders?email=${user.email}`,
         {
           method: "GET",
           headers: {

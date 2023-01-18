@@ -1,11 +1,11 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useNavigate } from "react-router-dom";
 import { Autoplay, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import banner1 from "../../images/banner1.jpg";
 import banner2 from "../../images/banner2.jpg";
 import banner3 from "../../images/banner3.jpg";
 import banner4 from "../../images/banner4.jpeg";
-import { useNavigate } from "react-router-dom";
 
 //
 // Import Swiper styles
@@ -104,13 +104,11 @@ const Banner = () => {
         <div className="max-w-2xl mx-auto px-4 grid items-center grid-cols-1 gap-y-16 gap-x-8 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8 lg:grid-cols-2">
           <div className="text-center md:text-left">
             <div className="mb-8">
-              <h1 className="text-5xl font-bold">
-                Welcome to{" "}
-                <span className="text-indigo-600 font-black">
-                  Gadget Maker House
-                </span>
+              <h3 className="lg:text-3xl text-xl font-bold">Welcome to</h3>
+              <h1 className="text-indigo-600 font-bold text-3xl lg:text-4xl">
+                Gadget Maker House
               </h1>
-              <p className=" text-lg mt-4 text-slate-700">
+              <p className=" lg:text-lg text-sm mt-4 text-slate-700">
                 One of the largest manufacturing company in Asia
               </p>
             </div>

@@ -9,7 +9,7 @@ const ManageOrders = () => {
   const handleDeleteOrders = (id) => {
     const proceedDelete = window.confirm("Are you sure to delete?");
     if (proceedDelete) {
-      const url = `https://polar-refuge-25611.herokuapp.com/paidOrders/${id}`;
+      const url = `https://gadget-maker-house-server.onrender.com/paidOrders/${id}`;
       fetch(url, {
         method: "DELETE",
         headers: {
