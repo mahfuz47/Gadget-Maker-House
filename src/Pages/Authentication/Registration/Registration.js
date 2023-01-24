@@ -1,180 +1,138 @@
-import {
-  useCreateUserWithEmailAndPassword,
-  useSignInWithGoogle,
-  useUpdateProfile,
-} from "react-firebase-hooks/auth";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
+import React from "react";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
-import useToken from "../../../Hooks/useToken";
-import Loading from "../../../Utilities/Loading";
-import Title from "../../../Utilities/Title";
+import SocialLogin from "../../Shared/SocialLogin";
 
-const Registration = () => {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
+const SignupForm = () => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
 
-  //Sign in with google
-  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-
-  //Create user with Email and password
+  // Creating User
+  //
+  //
+  //
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
-  //profile updating
-  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
-  const [token] = useToken(user || gUser);
-  const navigate = useNavigate();
-
-  let signInError;
-
-  if (loading || gLoading || updating) {
-    return <Loading></Loading>;
-  }
-
-  if (token) {
-    navigate("/");
-  }
-
-  if (error || gError || updateError) {
-    signInError = (
-      <p className="font-thin text-red-500">
-        {error?.message || gError?.message || updateError?.message}
-      </p>
-    );
-  }
-  const onSubmit = async (data) => {
-    await createUserWithEmailAndPassword(data.email, data.password);
-    await updateProfile({ displayName: data.name });
-    toast("Account Created");
-    navigate("/");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (password === confirmPassword) {
+      if (email && password) {
+        await createUserWithEmailAndPassword(email, password).then(
+          (userCredential) => {
+            if (userCredential) {
+              console.log(userCredential.user);
+              toast.success("Account registered successfully");
+            }
+          }
+        );
+      } else {
+        toast.error("Please fill all fields");
+      }
+      if (error) {
+        toast.error(error.message);
+      }
+    } else {
+      toast.error("Password does not match");
+    }
   };
-  return (
-    <>
-      <Title title="Registration"></Title>
 
-      <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ">
-        <div className="max-w-md w-full space-y-8 border-2 p-6 rounded-xl border-gray-100">
-          <h2 className="text-center text-2xl font-bold">Sign Up</h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="form-control w-full">
-              <label className="label">
-                <span className="label-text">Name</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="input input-bordered w-full"
-                {...register("name", {
-                  required: {
-                    value: true,
-                    message: "Name Is Required",
-                  },
-                })}
-              />
-              <label className="label">
-                {errors.name?.type === "required" && (
-                  <span className="label-text-alt text-red-500">
-                    {errors?.name?.message}
-                  </span>
-                )}
-              </label>
-            </div>
-            <div className="form-control w-full">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="input input-bordered w-full"
-                {...register("email", {
-                  required: {
-                    value: true,
-                    message: "Email Is Required",
-                  },
-                  pattern: {
-                    value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                    message: "Provide a valid Email",
-                  },
-                })}
-              />
-              <label className="label">
-                {errors.email?.type === "required" && (
-                  <span className="label-text-alt text-red-500">
-                    {errors?.email?.message}
-                  </span>
-                )}
-                {errors.email?.type === "pattern" && (
-                  <span className="label-text-alt text-red-500">
-                    {errors?.email?.message}
-                  </span>
-                )}
-              </label>
-            </div>
-            <div className="form-control w-full">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="password"
-                placeholder="Password"
-                className="input input-bordered w-full"
-                {...register("password", {
-                  required: {
-                    value: true,
-                    message: "Password Is Required",
-                  },
-                  minLength: {
-                    value: 8,
-                    message: "password must be minimum 8 characters or long",
-                  },
-                })}
-              />
-              <label className="label">
-                {errors.password?.type === "required" && (
-                  <span className="label-text-alt text-red-500">
-                    {errors?.password?.message}
-                  </span>
-                )}
-                {errors.password?.type === "minLength" && (
-                  <span className="label-text-alt text-red-500">
-                    {errors?.password?.message}
-                  </span>
-                )}
-              </label>
-            </div>
-            {signInError}
+  return (
+    <div className="px-5 grid h-full">
+      <div className=" px-5 pb-10 rounded-xl shadow-lg bg-white w-full my-auto">
+        <form onSubmit={handleSubmit} className="space-y-5 text-sm">
+          <div className="form-group w-full">
+            <label
+              htmlFor="email"
+              className="form-label inline-block mb-2 text-primary"
+            >
+              Email address
+            </label>
             <input
-              className="btn border-0 bg-indigo-600 hover:bg-indigo-800 text-white w-full"
-              type="submit"
-              value="Sign Up"
+              type="email"
+              className="input-default"
+              id="email"
+              onChange={(e) => setEmail(e.target.value)}
+              aria-describedby="emailHelp"
+              autoComplete="email"
+              placeholder="Type your email"
+              required
             />
-          </form>
-          <p>
-            <small className="text-accent">
-              already have an account?{" "}
-              <Link className="text-indigo-600 font-bold" to="/login">
-                Login
-              </Link>
-            </small>
-          </p>
-          <div className="divider">OR</div>
+          </div>
+
+          <div className="form-group">
+            <label
+              htmlFor="password"
+              className="form-label inline-block mb-2 text-primary"
+            >
+              Password
+            </label>
+            <input
+              type="text"
+              className="input-default"
+              id="password"
+              placeholder="Type your password"
+              autoComplete="password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label
+              htmlFor="password"
+              className="form-label inline-block mb-2 text-primary"
+            >
+              Confirm Password
+            </label>
+            <input
+              type="text"
+              className="input-default"
+              id="confirm-password"
+              placeholder="confirm your password"
+              autoComplete="password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-control text-start">
+            <label className="label flex justify-start cursor-pointer">
+              <input
+                type="checkbox"
+                required
+                className="checkbox checkbox-xs checkbox-primary rounded text-white transition-all duration-200 ease-in-out mr-1"
+              />
+              <span className="label-text text-sm">
+                Accept Terms and Conditions
+              </span>
+            </label>
+          </div>
+
           <button
-            onClick={() => signInWithGoogle()}
-            className="btn w-full border-0 bg-indigo-600 hover:bg-indigo-800 text-white"
+            type="submit"
+            className="
+      btn btn-primary btn-block rounded-lg text-white"
           >
-            Continue with Google
+            Sign in
           </button>
-        </div>
+          <p className="text-gray-800 mt-6 text-center">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out"
+            >
+              Login
+            </Link>
+          </p>
+        </form>
+        <div className="divider text-xs text-gray-600">OR</div>
+
+        <SocialLogin></SocialLogin>
       </div>
-    </>
+    </div>
   );
 };
 
-export default Registration;
+export default SignupForm;

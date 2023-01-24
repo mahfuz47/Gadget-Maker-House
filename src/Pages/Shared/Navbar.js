@@ -3,14 +3,18 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
+import UserImg from "../../images/user.jpg";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
+
+  const [imageError, setImageError] = React.useState(false);
 
   const handleSignOut = () => {
     signOut(auth);
     localStorage.removeItem("accessToken");
   };
+  console.log(user);
   const menuItems = (
     <>
       <li>
@@ -24,33 +28,13 @@ const Navbar = () => {
       <li>
         <Link to="/allTools">Products</Link>
       </li>
-      <li>
-        <Link to="/blogs">Blogs</Link>
-      </li>
-      <li>
-        <Link to="/portfolio">Portfolio</Link>
-      </li>
-      <li>
-        {user ? (
-          <div className="flex justify-between items-center">
-            <p className="bg-gray-100 rounded-xl p-2 font-bold text-sm text-graay-900 uppercase">
-              {user.displayName}
-            </p>
-            <button className="font-bold" onClick={handleSignOut}>
-              Logout
-            </button>
-          </div>
-        ) : (
-          <Link to="/login">Login</Link>
-        )}
-      </li>
     </>
   );
   return (
     <div className="navbar bg-base-100">
-      <div className="navbar-start lg:hidden">
+      <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost btn-circle">
+          <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -62,30 +46,55 @@ const Navbar = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h7"
+                d="M4 6h16M4 12h8m-8 6h16"
               />
             </svg>
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow font-bold text-indigo-700 bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             {menuItems}
           </ul>
         </div>
-      </div>
-      <div className="navbar-center lg:navbar-start">
-        <Link
-          to="/"
-          className="btn btn-ghost normal-case text-indigo-600 font-bold text-2xl"
-        >
-          Gadget Maker House
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          GMC
         </Link>
       </div>
-      <div className="navbar-end lg:flex hidden">
-        <ul className="menu menu-horizontal px-1 text-indigo-600 font-bold">
-          {menuItems}
-        </ul>
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">{menuItems}</ul>
+      </div>
+      <div className="navbar-end">
+        <div className="dropdown dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 h-10 rounded-full">
+              <img
+                src={imageError ? UserImg : user?.providerData?.photoURL}
+                alt="user"
+                className="w-full h-full"
+                onError={() => setImageError(true)}
+              />
+            </div>
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <Link to="/portfolio">Portfolio</Link>
+            </li>
+            <li>
+              <Link to="/blogs">Blogs</Link>
+            </li>
+            <li>
+              {user ? (
+                <button onClick={handleSignOut}>Logout</button>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
