@@ -7,7 +7,7 @@ import UserImg from "../../images/user.jpg";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
-
+  console.log(user);
   const [imageError, setImageError] = React.useState(false);
 
   const handleSignOut = () => {

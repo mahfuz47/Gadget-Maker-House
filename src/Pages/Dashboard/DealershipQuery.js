@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 import Title from "../../Utilities/Title";
 
 const DealershipQuery = () => {
+  const [user] = useAuthState(auth);
   const [dealers, setDealers] = useState([]);
   useEffect(() => {
     fetch(`https://gadget-maker-house-server.onrender.com/info`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `Bearer ${user?.accessToken}`,
       },
     })
       .then((res) => res.json())
       .then((data) => setDealers(data));
-  }, []);
+  }, [user]);
   return (
     <div>
       <div className="flex justify-between items-baseline">

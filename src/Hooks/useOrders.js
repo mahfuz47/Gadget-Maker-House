@@ -15,15 +15,14 @@ const useOrders = () => {
         {
           method: "GET",
           headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            authorization: `Bearer ${user?.accessToken}`,
           },
         }
       )
         .then((res) => {
           if (res.status === 401 || res.status === 403) {
             signOut(auth);
-            localStorage.removeItem("accessToken");
-            navigate("/");
+            navigate("/", { replace: true });
           }
           return res.json();
         })

@@ -1,8 +1,11 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import auth from "../../firebase.init";
 
 const Dealership = () => {
+  const [user] = useAuthState(auth);
   const {
     register,
     formState: { errors },
@@ -20,7 +23,7 @@ const Dealership = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `Bearer ${user?.accessToken}`,
       },
       body: JSON.stringify(info),
     })

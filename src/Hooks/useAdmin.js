@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
 
 const useAdmin = (user) => {
+  const [User] = useAuthState(auth);
   const [admin, setAdmin] = useState(false);
   const [adminLoading, setAdminLoading] = useState(true);
   useEffect(() => {
@@ -10,7 +13,7 @@ const useAdmin = (user) => {
         method: "GET",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          authorization: `Bearer ${User?.accessToken}`,
         },
       })
         .then((res) => res.json())
@@ -19,7 +22,7 @@ const useAdmin = (user) => {
           setAdminLoading(false);
         });
     }
-  }, [user]);
+  }, [user, User]);
 
   return [admin, adminLoading];
 };

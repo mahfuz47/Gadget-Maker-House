@@ -10,7 +10,7 @@ const UserRow = ({ user, refetch, index }) => {
       {
         method: "PUT",
         headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          authorization: `Bearer ${user?.accessToken}`,
         },
       }
     )
@@ -36,7 +36,7 @@ const UserRow = ({ user, refetch, index }) => {
       fetch(url, {
         method: "DELETE",
         headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          authorization: `Bearer ${user?.accessToken}`,
         },
       })
         .then((res) => res.json())

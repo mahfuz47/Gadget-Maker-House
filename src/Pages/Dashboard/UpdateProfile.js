@@ -24,7 +24,7 @@ const UpdateProfile = () => {
       fetch(url, {
         method: "DELETE",
         headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          authorization: `Bearer ${user?.accessToken}`,
         },
       })
         .then((res) => res.json())
@@ -67,7 +67,7 @@ const UpdateProfile = () => {
             method: "POST",
             headers: {
               "content-type": "application/json",
-              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              authorization: `Bearer ${user?.accessToken}`,
             },
             body: JSON.stringify(profile),
           })

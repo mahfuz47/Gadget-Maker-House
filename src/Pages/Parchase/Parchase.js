@@ -16,12 +16,12 @@ const Parchase = () => {
     fetch(`https://gadget-maker-house-server.onrender.com/tools/${id}`, {
       method: "GET",
       headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `Bearer ${user?.accessToken}`,
       },
     })
       .then((res) => res.json())
       .then((data) => setToolDetail(data));
-  }, [id]);
+  }, [id, user]);
 
   const navigate = useNavigate();
   const goToMyOrders = () => {

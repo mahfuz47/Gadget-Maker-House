@@ -1,5 +1,5 @@
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router-dom";
 // import Loading from "../Shared/Loading";
 
@@ -18,7 +18,7 @@ const CheckoutForm = ({ order }) => {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `Bearer ${user?.accessToken}`,
       },
       body: JSON.stringify({ price }),
     })
@@ -28,7 +28,7 @@ const CheckoutForm = ({ order }) => {
           setClientSecret(data.clientSecret);
         }
       });
-  }, [price]);
+  }, [price, user]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -85,7 +85,7 @@ const CheckoutForm = ({ order }) => {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          authorization: `Bearer ${user?.accessToken}`,
         },
         body: JSON.stringify(payment),
       })
