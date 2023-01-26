@@ -10,19 +10,28 @@ const Parchase = () => {
   const { id } = useParams();
   const [user, loading] = useAuthState(auth);
   const [toolDetail, setToolDetail] = useState({});
-  const { _id, toolName, toolImage, price, orderQuantity } = toolDetail;
-  const [orderData, setOrderData] = useState(orderQuantity);
+  const { _id, toolName, toolImage, price, orderQuantity, availableQuantity } =
+    toolDetail;
+  // console.log(toolDetail);
+
   useEffect(() => {
     fetch(`https://gadget-maker-house-server.onrender.com/tools/${id}`, {
       method: "GET",
       headers: {
-        authorization: `Bearer ${user?.accessToken}`,
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())
       .then((data) => setToolDetail(data));
   }, [id, user]);
 
+  const [quantity, setQuantity] = useState(toolDetail?.minQuantity);
+  useEffect(() => {
+    if (quantity !== toolDetail?.minQuantity) {
+      setQuantity(toolDetail?.minQuantity);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toolDetail]);
   const navigate = useNavigate();
   const goToMyOrders = () => {
     navigate("/dashboard/myOrders");
@@ -37,7 +46,7 @@ const Parchase = () => {
       tool: toolName,
       price: totalPrice,
       image: toolImage,
-      quantity: orderData,
+      quantity: quantity,
       order: orderQuantity,
     };
     fetch(`https://gadget-maker-house-server.onrender.com/orders`, {
@@ -57,13 +66,43 @@ const Parchase = () => {
       });
   };
 
-  const minusQuantity = (quantity) => {
-    let totalQuantity = parseInt(quantity) - 10;
-    setOrderData(totalQuantity);
+  const minusQuantity = (q) => {
+    if (q > orderQuantity) {
+      setQuantity(q - 1);
+    } else {
+      setQuantity(orderQuantity);
+    }
   };
-  const plusQuantity = (quantity) => {
-    let totalQuantity = parseInt(quantity) + 10;
-    setOrderData(totalQuantity);
+  const plusQuantity = (q) => {
+    if (q < availableQuantity) {
+      setQuantity(q + 1);
+    } else {
+      setQuantity(availableQuantity);
+    }
+  };
+
+  const handleQuantity = (e) => {
+    let value = parseInt(e.target.value);
+    if (e.target.value === "" || e.target.value === "0") {
+      value = orderQuantity;
+    }
+    if (value < orderQuantity) {
+      value = orderQuantity;
+    }
+    if (value > availableQuantity) {
+      value = availableQuantity;
+    }
+    setQuantity(value);
+    // if (value < orderQuantity) {
+    //   setQuantity(orderQuantity);
+    // } else {
+    //   setQuantity(value);
+    // }
+    // if (value > availableQuantity) {
+    //   setQuantity(availableQuantity);
+    // } else {
+    //   setQuantity(value);
+    // }
   };
 
   if (loading) {
@@ -85,7 +124,7 @@ const Parchase = () => {
                 <p className="text-2xl font-bold">Order Quantity:</p>
               </div>
               <button
-                onClick={() => minusQuantity(orderQuantity)}
+                onClick={() => minusQuantity(quantity)}
                 className="btn btn-square btn-sm btn-outline"
               >
                 <svg
@@ -101,9 +140,16 @@ const Parchase = () => {
                   />
                 </svg>
               </button>
-              <p className="font-bold text-black text-2xl">{orderData}</p>
+              <input
+                className="w-12 h-10"
+                type="number"
+                name=""
+                id=""
+                onChange={handleQuantity}
+                value={quantity ? quantity : toolDetail?.minQuantity}
+              />
               <button
-                onClick={() => plusQuantity(orderQuantity)}
+                onClick={() => plusQuantity(quantity)}
                 className="btn btn-square btn-sm btn-outline"
               >
                 <svg

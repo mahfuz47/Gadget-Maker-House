@@ -1,12 +1,9 @@
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import auth from "../../firebase.init";
 import usePaidOrders from "../../Hooks/usePaidOrders";
 import Title from "../../Utilities/Title";
 
 const ManageOrders = () => {
-  const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const [paidOrder, setPaidOrder] = usePaidOrders();
   const handleDeleteOrders = (id) => {
@@ -16,7 +13,7 @@ const ManageOrders = () => {
       fetch(url, {
         method: "DELETE",
         headers: {
-          authorization: `Bearer ${user?.accessToken}`,
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       })
         .then((res) => res.json())

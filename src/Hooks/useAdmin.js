@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../firebase.init";
 
 const useAdmin = (user) => {
-  const [User] = useAuthState(auth);
   const [admin, setAdmin] = useState(false);
-  const [adminLoading, setAdminLoading] = useState(true);
+  const [adminLoading, setAdminLoading] = useState(false);
   useEffect(() => {
-    const email = user?.email;
+    const email = user?.user?.email;
     if (email) {
+      setAdminLoading(true);
       fetch(`https://gadget-maker-house-server.onrender.com/admin/${email}`, {
         method: "GET",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${User?.accessToken}`,
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       })
         .then((res) => res.json())
@@ -22,7 +20,7 @@ const useAdmin = (user) => {
           setAdminLoading(false);
         });
     }
-  }, [user, User]);
+  }, [user]);
 
   return [admin, adminLoading];
 };

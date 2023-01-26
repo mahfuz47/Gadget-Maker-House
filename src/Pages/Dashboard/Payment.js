@@ -1,10 +1,8 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import auth from "../../firebase.init";
 import Loading from "../../Utilities/Loading";
 import Title from "../../Utilities/Title";
 import Checkout from "./Checkout";
@@ -14,14 +12,13 @@ const stripePromise = loadStripe(
 );
 
 const Payment = () => {
-  const [user] = useAuthState(auth);
   const { id } = useParams();
 
   const { data: order, isLoading } = useQuery(["orders", id], () =>
     fetch(`https://gadget-maker-house-server.onrender.com/orders/${id}`, {
       method: "GET",
       headers: {
-        authorization: `Bearer ${user?.accessToken}`,
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     }).then((res) => res.json())
   );

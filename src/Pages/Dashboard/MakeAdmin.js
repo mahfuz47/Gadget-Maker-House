@@ -1,13 +1,10 @@
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
-import auth from "../../firebase.init";
 import Loading from "../../Utilities/Loading";
 import Title from "../../Utilities/Title";
 import UserRow from "./UserRow";
 
 const MakeAdmin = () => {
-  const [user] = useAuthState(auth);
   const {
     data: users,
     isLoading,
@@ -16,7 +13,7 @@ const MakeAdmin = () => {
     fetch("https://gadget-maker-house-server.onrender.com/users", {
       method: "GET",
       headers: {
-        authorization: `Bearer ${user?.accessToken}`,
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     }).then((res) => res.json())
   );

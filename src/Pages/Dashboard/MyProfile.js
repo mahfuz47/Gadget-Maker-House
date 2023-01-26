@@ -6,7 +6,7 @@ const MyProfile = () => {
   const navigate = useNavigate();
 
   const [profile] = useProfileData();
-
+  console.log(profile);
   const handleNavigate = (id) => {
     navigate(`/updateProfile/${id}`);
   };

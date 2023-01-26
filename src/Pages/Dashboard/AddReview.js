@@ -1,8 +1,6 @@
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import auth from "../../firebase.init";
 import Title from "../../Utilities/Title";
 
 const AddReview = () => {
@@ -12,7 +10,7 @@ const AddReview = () => {
     handleSubmit,
     reset,
   } = useForm();
-  const [user] = useAuthState(auth);
+
   const imageStorageKey = "0f2051578179d1dc78313d55428ca1e6";
 
   const onSubmit = async (data) => {
@@ -39,7 +37,7 @@ const AddReview = () => {
             method: "POST",
             headers: {
               "content-type": "application/json",
-              authorization: `Bearer ${user?.accessToken}`,
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
             body: JSON.stringify(review),
           })

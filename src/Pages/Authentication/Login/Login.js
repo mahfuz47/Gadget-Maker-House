@@ -3,6 +3,7 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
+import useToken from "../../../Hooks/useToken";
 import Loading from "../../../Utilities/Loading";
 import SocialLogin from "../../Shared/SocialLogin";
 
@@ -14,34 +15,30 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    if (user) {
-      navigate("/", { replace: true });
-    }
-  }, [navigate, user]);
-
+  const [token] = useToken(user);
   let from = location.state?.from?.pathname || "/";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (email && password) {
       await signInWithEmailAndPassword(email, password).then(
         (userCredential) => {
-          if (userCredential) {
-            toast.success("Login successful");
-            console.log(userCredential);
-            navigate(from, { replace: true });
-          } else {
-            toast.error(error.message);
-          }
+          //  console.log(userCredential);
         }
       );
     } else {
       toast.error("Please fill all fields");
     }
-    if (error) {
-      toast.error(error.message);
-    }
   };
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+      toast.success("Login Success");
+    }
+    if (error) {
+      toast.error(error?.message);
+    }
+  }, [navigate, token, user, error, from]);
 
   return (
     <>

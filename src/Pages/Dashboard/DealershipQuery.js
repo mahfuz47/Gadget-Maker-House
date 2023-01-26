@@ -11,7 +11,7 @@ const DealershipQuery = () => {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        authorization: `Bearer ${user?.accessToken}`,
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())

@@ -9,7 +9,7 @@ const usePaidOrders = () => {
     fetch("https://gadget-maker-house-server.onrender.com/paidOrders", {
       method: "GET",
       headers: {
-        authorization: `Bearer ${user?.accessToken}`,
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())
