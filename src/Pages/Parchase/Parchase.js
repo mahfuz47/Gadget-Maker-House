@@ -8,13 +8,16 @@ import Title from "../../Utilities/Title";
 
 const Parchase = () => {
   const { id } = useParams();
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const [toolDetail, setToolDetail] = useState({});
   const { _id, toolName, toolImage, price, orderQuantity, availableQuantity } =
     toolDetail;
   // console.log(toolDetail);
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    setLoading(true);
     fetch(`https://gadget-maker-house-server.onrender.com/tools/${id}`, {
       method: "GET",
       headers: {
@@ -22,7 +25,10 @@ const Parchase = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setToolDetail(data));
+      .then((data) => {
+        setToolDetail(data);
+        setLoading(false);
+      });
   }, [id, user]);
 
   const [quantity, setQuantity] = useState(toolDetail?.minQuantity);
@@ -38,6 +44,7 @@ const Parchase = () => {
   };
 
   const handleOrder = (event) => {
+    setLoading(true);
     let totalPrice = price * orderQuantity;
     const order = {
       id: _id,
@@ -60,7 +67,9 @@ const Parchase = () => {
       .then((data) => {
         if (data.success) {
           toast.success("order places placed");
+          setLoading(false);
         } else {
+          setLoading(false);
           toast.error("You can order only one time for every Product");
         }
       });
