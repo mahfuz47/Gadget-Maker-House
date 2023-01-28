@@ -57,7 +57,7 @@ const SignupForm = () => {
       {loading ? (
         <Loading></Loading>
       ) : (
-        <div className="px-5 grid h-full">
+        <div className="px-5 grid h-full w-7/12 mx-auto">
           <div className=" px-5 pb-10 rounded-xl shadow-lg bg-white w-full my-auto">
             <form onSubmit={handleSubmit} className="space-y-5 text-sm">
               <div className="form-group w-full">
