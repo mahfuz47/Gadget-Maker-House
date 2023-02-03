@@ -28,10 +28,10 @@ const Payment = () => {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="p-3 my-3">
       <Title title="Payment"></Title>
       <div>
-        <div className="card w-50 max-w-md bg-base-100 shadow-xl my-12 border-2 border-solid">
+        <div className="card lg:w-5/12 mx-auto w-full bg-base-100 shadow-xl p-3">
           <div className="card-body">
             <p className="text-success font-bold">Hello, {order.user}</p>
             <h2 className="card-title font-bold">Payment For:</h2>
@@ -45,12 +45,18 @@ const Payment = () => {
             <p className="font-bold">
               Amount: <span className="text-indigo-500">${order.price}</span>
             </p>
+            <p className="text-sm font-bold">
+              You can use this fake card number: <br />
+              <span className="font-semibold text-indigo-600 text-xs">
+                5555555555554444 - 2325 - 567 - 23455
+              </span>
+            </p>
           </div>
         </div>
         <div className="divider px-2 font-bold text-indigo-600">CARD INFO</div>
 
-        <div className="card flex-shrink-0 w-50 max-w-md shadow-2xl bg-base-100">
-          <div className="card-body">
+        <div className="card lg:w-5/12 mx-auto w-full bg-base-100 shadow-xl p-3">
+          <div className="card-body space-y-2">
             <Elements stripe={stripePromise}>
               <Checkout order={order} />
             </Elements>

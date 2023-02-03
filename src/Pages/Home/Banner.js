@@ -126,7 +126,7 @@ const Banner = () => {
             <div>
               <button
                 onClick={() => navigate("/allTools")}
-                className="btn bg-slate-700 border-none rounded  w-1/3 font-bold mt-6 hover:bg-indigo-800 text-white hover:text-white"
+                className="btn bg-slate-700 border-none rounded  lg:w-1/3 font-bold mt-6 hover:bg-indigo-800 text-white hover:text-white"
               >
                 Get Started
               </button>

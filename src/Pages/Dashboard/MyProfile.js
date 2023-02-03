@@ -1,12 +1,16 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
 import useProfileData from "../../Hooks/useProfileData";
 import Loading from "../../Utilities/Loading";
 import Title from "../../Utilities/Title";
+
 const MyProfile = () => {
   const navigate = useNavigate();
-
-  const [profile, loading] = useProfileData();
+  const [user] = useAuthState(auth);
+  const [profile, loading] = useProfileData(user);
+  console.log(loading);
   console.log(profile);
   const handleNavigate = (id) => {
     navigate(`/updateProfile/${id}`);
@@ -18,15 +22,18 @@ const MyProfile = () => {
       ) : (
         <>
           <Title title="Profile"></Title>
-          <div className="hero-content flex-col lg:flex-row">
-            <img
-              src={profile ? profile.myphotourl : ""}
-              className="max-w-sm rounded-lg shadow-2xl"
-              alt=""
-            />
-            <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+          <div className="grid grid-cols-12 gap-5 items-center p-2">
+            <div className="lg:col-span-4  col-span-12 h-full">
+              {" "}
+              <img
+                src={profile ? profile.myphotourl : ""}
+                className="w-full h-full rounded-lg shadow-2xl"
+                alt=""
+              />
+            </div>
+            <div className="bg-white shadow lg:col-span-8 col-span-12 sm:rounded-lg">
               <div className="px-4 py-5 sm:px-6">
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                   <div>
                     <h3 className="text-2xl font-bold leading-6  text-purple-600">
                       Profile
@@ -37,7 +44,7 @@ const MyProfile = () => {
                   </div>
                   <button
                     onClick={() => handleNavigate(profile?._id)}
-                    className="btn btn-secondary btn-sm uppercase text-white"
+                    className="btn btn-secondary lg:btn-sm btn-xs uppercase text-white"
                   >
                     Update
                   </button>
