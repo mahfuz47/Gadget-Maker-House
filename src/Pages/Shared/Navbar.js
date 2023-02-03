@@ -55,12 +55,15 @@ const Navbar = () => {
             {menuItems}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
+        <Link
+          to="/"
+          className="btn btn-ghost normal-case text-xl font-bold text-indigo-600"
+        >
           GMC
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{menuItems}</ul>
+        <ul className="menu menu-horizontal px-1 font-semibold">{menuItems}</ul>
       </div>
       <div className="navbar-end">
         <div className="dropdown dropdown-end">
