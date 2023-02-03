@@ -4,6 +4,7 @@ import auth from "../firebase.init";
 
 const usePaidOrders = () => {
   const [user] = useAuthState(auth);
+  const [loading, setLoading] = useState(true);
   const [paidOrder, setPaidOrder] = useState([]);
   useEffect(() => {
     fetch("https://gadget-maker-house-server.onrender.com/paidOrders", {
@@ -13,9 +14,12 @@ const usePaidOrders = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setPaidOrder(data));
+      .then((data) => {
+        setPaidOrder(data);
+        setLoading(false);
+      });
   }, [user]);
-  return [paidOrder, setPaidOrder];
+  return [paidOrder, setPaidOrder, loading];
 };
 
 export default usePaidOrders;

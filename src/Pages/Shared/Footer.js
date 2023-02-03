@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className=" mt-10 pt-10 py-4">
+    <div className="px-2 pb-5 pt-8">
       <p className="text-center">
         <small className="text-xs font-weight: 100">
           ©2022 Gadget House Maker, U.S.A., Inc. All information applies to U.S.

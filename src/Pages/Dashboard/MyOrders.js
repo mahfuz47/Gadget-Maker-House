@@ -26,16 +26,16 @@ const MyOrders = () => {
   return (
     <div>
       <Title title="My Orders"></Title>
-      <div className="flex justify-between items-baseline">
+      <div className="flex justify-between items-center p-3">
         <h2 className="text-lg font-bold">Total Order: {orders.length}</h2>
         <button
           onClick={() => navigate("/allTools")}
-          className="btn btn-outline btn-secondary btn-wide btn-sm text-white font-bold"
+          className="btn btn-outline btn-secondary btn-sm hover:text-white"
         >
           order again
         </button>
       </div>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto px-3">
         <table className="table w-full">
           <thead>
             <tr>
@@ -49,8 +49,8 @@ const MyOrders = () => {
           </thead>
           <tbody>
             {orders.map((tool, index) => (
-              <tr key={index}>
-                <th className="text-center">{index + 1}</th>
+              <tr className="text-sm" key={index}>
+                <th className="text-center ">{index + 1}</th>
                 <td className="text-center">{tool?.tool}</td>
                 <td className="text-center">
                   <img className="w-20" src={tool?.image} alt="" />
@@ -61,18 +61,20 @@ const MyOrders = () => {
                 <td className="text-center">{tool?.price}$</td>
                 <td className="text-center">
                   {tool?.price && !tool?.paid && (
-                    <div className="flex items-center justify-start space-x-3">
-                      <Link to={`/dashboard/payment/${tool._id}`}>
-                        <button className="btn btn-sm btn-secondary font-bold text-white">
-                          pay
+                    <div className="flex justify-center items-center">
+                      <div className="flex items-center justify-start space-x-3">
+                        <Link to={`/dashboard/payment/${tool._id}`}>
+                          <button className="btn btn-sm btn-secondary font-bold text-white">
+                            pay
+                          </button>
+                        </Link>
+                        <button
+                          onClick={() => handleDeleteOrders(tool._id)}
+                          className="btn btn-error btn-sm"
+                        >
+                          Cancel
                         </button>
-                      </Link>
-                      <button
-                        onClick={() => handleDeleteOrders(tool._id)}
-                        className="btn btn-error btn-sm"
-                      >
-                        Cancel
-                      </button>
+                      </div>
                     </div>
                   )}
                   {tool?.price && tool?.paid && (
@@ -92,12 +94,12 @@ const MyOrders = () => {
                         </svg>
                         Paid
                       </p>
-                      <p>
+                      <p className="text-xs">
                         <span className="font-bold text-gray-900">
                           Transaction ID
                         </span>
                         :{" "}
-                        <span className="text-green-600">
+                        <span className="text-green-600 ">
                           {tool?.transactionId}
                         </span>
                       </p>

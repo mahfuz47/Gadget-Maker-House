@@ -20,17 +20,18 @@ const Dashboard = () => {
       <Title title="Dashboard"></Title>
       <input id="dashboard-sidebar" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
-        <button
+        <label
+          htmlFor="dashboard-sidebar"
           onClick={() => navigate("/dashboard")}
-          className="rounded-xl btn-ghost text-purple-600 font-extrabold uppercase py-3 pr-4 text-3xl"
+          className="btn rounded-xl btn-ghost text-purple-600 font-extrabold uppercase lg:text-3xl text-xl ml-4"
         >
           Dashboard
-        </button>
+        </label>
         <Outlet></Outlet>
       </div>
       <div className="drawer-side">
         <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
-        <ul className="menu p-4 overflow-y-auto w-48 bg-base-100 text-base-content">
+        <ul className="menu p-4 space-y-2 overflow-y-auto w-48 bg-base-100 text-base-content">
           {/* <!-- Sidebar content here --> */}
           <li>
             <Link to="/dashboard">Profile</Link>

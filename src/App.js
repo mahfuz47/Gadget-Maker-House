@@ -23,7 +23,6 @@ import AllTools from "./Pages/Home/AllTools";
 import Home from "./Pages/Home/Home";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import Parchase from "./Pages/Parchase/Parchase";
-import MyPortfolio from "./Pages/Portfolio/MyPortfolio";
 import Footer from "./Pages/Shared/Footer";
 import Navbar from "./Pages/Shared/Navbar";
 
@@ -39,7 +38,7 @@ function App() {
           element={<UpdateProfile></UpdateProfile>}
         ></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
-        <Route path="/portfolio" element={<MyPortfolio></MyPortfolio>}></Route>
+
         <Route
           path="tools/:id"
           element={
