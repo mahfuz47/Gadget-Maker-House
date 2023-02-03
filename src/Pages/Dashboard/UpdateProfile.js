@@ -346,7 +346,7 @@ const UpdateProfile = () => {
 
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text font-bold">Tools Photo</span>
+              <span className="label-text font-bold">Your Photo</span>
             </label>
             <input
               type="file"

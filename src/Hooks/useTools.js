@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 
 const useTools = () => {
+  const [loading, setLoading] = useState(true);
   const [user] = useAuthState(auth);
   const [tools, setTools] = useState([]);
   useEffect(() => {
@@ -13,10 +14,13 @@ const useTools = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setTools(data));
+      .then((data) => {
+        setTools(data);
+        setLoading(false);
+      });
   }, [user]);
 
-  return [tools];
+  return [tools, setTools, loading];
 };
 
 export default useTools;

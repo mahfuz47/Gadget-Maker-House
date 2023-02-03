@@ -35,7 +35,7 @@ const MyOrders = () => {
           order again
         </button>
       </div>
-      <div className="overflow-x-auto px-3">
+      <div className="overflow-x-auto border-x rounded-lg">
         <table className="table w-full">
           <thead>
             <tr>

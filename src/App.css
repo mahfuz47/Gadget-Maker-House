@@ -14,6 +14,30 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 0.4em;
+}
+@media screen and (max-width: 780px) {
+  ::-webkit-scrollbar {
+    display: block;
+  }
+}
+::-webkit-scrollbar-track {
+  background-color: #ebebeb;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #e7e7e7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(223, 223, 223);
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

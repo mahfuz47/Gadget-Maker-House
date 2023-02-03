@@ -5,18 +5,22 @@ import auth from "../firebase.init";
 
 const useProfileData = () => {
   const [user] = useAuthState(auth);
-  const [profile, setProfile] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [profile, setProfile] = useState({});
   useEffect(() => {
     async function fetch() {
+      setLoading(true);
       const { data } = await axios.get(
         "https://gadget-maker-house-server.onrender.com/profile"
       );
       setProfile(data?.slice().reverse()[0]);
+      setLoading(false);
     }
     fetch();
+    setLoading(false);
   }, [user]);
 
-  return [profile, setProfile];
+  return [profile, setProfile, loading];
 };
 
 export default useProfileData;
