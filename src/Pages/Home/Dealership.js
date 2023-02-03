@@ -38,23 +38,25 @@ const Dealership = () => {
   return (
     <>
       <div className="my-12">
-        <h2 className="text-4xl font-bold text-start mb-10 text-center">
+        <h2 className="text-4xl font-bold text-start text-center">
           Dealership
         </h2>
       </div>
-      <div className="bg-gray-100 rounded-xl border-8 border-x-8 border-y-8 border-solid border-gray-200">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
-          <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
-            <span className="block">
-              Want to discuss on dealership with Us?
-            </span>
-            <span className="block text-indigo-600">
-              Please drop some questions and information, we will contact you
-              soon..
-            </span>
-          </h2>
+      <div className="bg-gray-50 rounded-xl border-8 border-x-8 border-y-8 border-solid border-gray-100 p-4">
+        <div className="grid grid-cols-12 items-center">
+          <div className="lg:col-span-5 col-span-12 gap-4">
+            <h2 className="lg:text-3xl text-xl font-extrabold tracking-tight text-gray-900">
+              <span className="block">
+                Want to discuss on dealership with Us?
+              </span>
+              <span className="block text-indigo-600">
+                Please drop some questions and information, we will contact you
+                soon..
+              </span>
+            </h2>
+          </div>
 
-          <div className="card w-9/12 bg-base-100 shadow-xl px-3">
+          <div className="lg:col-span-7 col-span-12 bg-base-100 shadow-xl p-4 rounded-lg">
             <h2 className="text-purple-700 text-2xl font-bold text-center">
               Query Form
             </h2>
