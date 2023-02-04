@@ -5,12 +5,12 @@ import { getAuth } from "firebase/auth";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 const firebaseConfig = {
-  apiKey: process.env.local.REACT_APP_apiKey,
-  authDomain: process.env.local.REACT_APP_authDomain,
-  projectId: process.env.local.REACT_APP_projectId,
-  storageBucket: process.env.local.REACT_APP_storageBucket,
-  messagingSenderId: process.env.local.REACT_APP_messagingSenderId,
-  appId: process.env.local.REACT_APP_appId,
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase
