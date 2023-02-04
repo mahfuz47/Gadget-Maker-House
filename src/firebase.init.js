@@ -12,7 +12,15 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_messagingSenderId,
   appId: process.env.REACT_APP_appId,
 };
-
+console.log(firebaseConfig);
+// const firebaseConfig = {
+//   apiKey: "AIzaSyC7MH-urRkPTMTsI2clwKCSRYchENYlIgc",
+//   authDomain: "gadget-house-app.firebaseapp.com",
+//   projectId: "gadget-house-app",
+//   storageBucket: "gadget-house-app.appspot.com",
+//   messagingSenderId: "816471626195",
+//   appId: "1:816471626195:web:180655fe2bcb41a1e09f26",
+// };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 

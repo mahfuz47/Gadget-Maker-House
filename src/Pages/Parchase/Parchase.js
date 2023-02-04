@@ -120,8 +120,8 @@ const Parchase = () => {
   return (
     <div>
       <Title title={"Parchase"}></Title>
-      <div className="grid grid-cols-2 xs:inline items-center space-x-4 gap-y-4">
-        <div className="py-5 sm:w-9/12">
+      <div className="grid grid-cols-12 items-center lg:gap-x-16 gap-5  p-4">
+        <div className="py-5 lg:col-span-5 col-span-12">
           <img
             className="w-full rounded-xl"
             src={toolDetail?.toolImage}
@@ -185,70 +185,67 @@ const Parchase = () => {
             </div>
           </div>
         </div>
-        <div>
-          <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-            <div className="px-4 py-5 sm:px-6 flex justify-between items-center">
-              <div>
-                <h3 className="text-xl font-bold leading-6 font-mono text-gray-900">
-                  {toolDetail?.toolName}
-                </h3>
-                <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                  Details and Parchase functionalities.
-                </p>
+
+        <div className=" bg-white lg:col-span-7 col-span-12 ">
+          <div className="px-4 py-5 sm:px-6 flex justify-between items-center">
+            <div>
+              <h3 className="text-xl font-bold leading-6 font-mono text-gray-900">
+                {toolDetail?.toolName}
+              </h3>
+              <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                Details and Parchase functionalities.
+              </p>
+            </div>
+            <button
+              onClick={goToMyOrders}
+              className="btn btn-outline btn-secondary btn-sm uppercase"
+            >
+              my orders
+            </button>
+          </div>
+          <div className="border-t border-gray-200">
+            <dl>
+              <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-bold text-gray-500">User</dt>
+                <dd className="mt-1 text-xl uppercase font-bold text-gray-900 sm:mt-0 sm:col-span-2">
+                  {user?.displayName}
+                </dd>
               </div>
-              <button
-                onClick={goToMyOrders}
-                className="btn btn-outline btn-secondary btn-sm uppercase"
-              >
-                my orders
-              </button>
-            </div>
-            <div className="border-t border-gray-200">
-              <dl>
-                <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-bold text-gray-500">User</dt>
-                  <dd className="mt-1 text-xl uppercase font-bold text-gray-900 sm:mt-0 sm:col-span-2">
-                    {user?.displayName}
-                  </dd>
-                </div>
-                <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">Email</dt>
-                  <dd className="mt-1 text-sm font-bold text-gray-900 sm:mt-0 sm:col-span-2">
-                    {user?.email}
-                  </dd>
-                </div>
-                <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-bold text-gray-500">Price</dt>
-                  <dd className="mt-1 font-bold text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    <p>${toolDetail?.price}</p>
-                  </dd>
-                </div>
-                <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-bold text-gray-500">
-                    Description
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {toolDetail?.description}
-                  </dd>
-                </div>
-                <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-bold text-gray-500">
-                    Minimum Order Quantity
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 font-bold">
-                    {toolDetail?.minQuantity}
-                  </dd>
-                </div>
-                <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-bold text-gray-500">
-                    Avaliable Quantity
-                  </dt>
-                  <dd className="mt-1 text-sm font-bold text-gray-900 sm:mt-0 sm:col-span-2">
-                    {toolDetail.availableQuantity}
-                  </dd>
-                </div>
-              </dl>
-            </div>
+              <div className=" bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-500">Email</dt>
+                <dd className="mt-1 text-sm font-bold text-gray-900 sm:mt-0 sm:col-span-2">
+                  {user?.email}
+                </dd>
+              </div>
+              <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-bold text-gray-500">Price</dt>
+                <dd className="mt-1 font-bold text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  <p>${toolDetail?.price}</p>
+                </dd>
+              </div>
+              <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-bold text-gray-500">Description</dt>
+                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  {toolDetail?.description}
+                </dd>
+              </div>
+              <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-bold text-gray-500">
+                  Minimum Order Quantity
+                </dt>
+                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 font-bold">
+                  {toolDetail?.minQuantity}
+                </dd>
+              </div>
+              <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-bold text-gray-500">
+                  Avaliable Quantity
+                </dt>
+                <dd className="mt-1 text-sm font-bold text-gray-900 sm:mt-0 sm:col-span-2">
+                  {toolDetail.availableQuantity}
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
       </div>
