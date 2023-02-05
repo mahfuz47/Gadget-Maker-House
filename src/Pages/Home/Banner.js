@@ -101,7 +101,7 @@ const Banner = () => {
   return (
     <div className="my-5">
       <div className="bg-white">
-        <div className="max-w-2xl mx-auto px-4 grid items-center grid-cols-1 gap-y-16 gap-x-8 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8 lg:grid-cols-2">
+        <div className="max-w-2xl mx-auto grid items-center grid-cols-1 gap-y-16 gap-x-8 px-6  lg:max-w-7xl lg:px-8 lg:grid-cols-2 py-10">
           <div className="text-center md:text-left">
             <div className="mb-8">
               <h3 className="lg:text-3xl text-xl font-bold">Welcome to</h3>

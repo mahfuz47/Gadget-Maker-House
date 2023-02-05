@@ -20,7 +20,7 @@ const useTools = () => {
       });
   }, [user]);
 
-  return [tools, setTools, loading];
+  return [tools, loading, setTools];
 };
 
 export default useTools;
