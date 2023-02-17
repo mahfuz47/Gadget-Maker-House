@@ -47,14 +47,7 @@ function App() {
             </RequireAuth>
           }
         ></Route>
-        <Route
-          path="allTools"
-          element={
-            <RequireAuth>
-              <AllTools></AllTools>
-            </RequireAuth>
-          }
-        ></Route>
+        <Route path="allTools" element={<AllTools></AllTools>}></Route>
 
         <Route
           path="dashboard"

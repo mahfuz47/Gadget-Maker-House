@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useTools from "../../Hooks/useTools";
 import Loading from "../../Utilities/Loading";
 import Title from "../../Utilities/Title";
 
 const ManageProducts = () => {
-  const [tools, setTools, loading] = useTools();
+  const [loading, setLoading] = useState(true);
+  const [tools, setTools] = useState([]);
+  useEffect(() => {
+    setLoading(true);
+    async function dataFetch() {
+      fetch("https://gadget-maker-house-server.onrender.com/tools")
+        .then((res) => res.json())
+        .then((data) => {
+          setTools(data);
+          setLoading(false);
+        });
+    }
+    dataFetch();
+  }, []);
   const navigate = useNavigate();
   const handleDeleteOrders = (id) => {
     const proceedDelete = window.confirm("Are you sure to delete?");

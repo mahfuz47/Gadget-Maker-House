@@ -7,7 +7,7 @@ module.exports = {
     themes: [
       {
         portalTheme: {
-          primary: "#9857cf",
+          primary: "#4f46e5",
           secondary: "#8115CF",
           accent: "#3A4256",
           neutral: "#3d4451",

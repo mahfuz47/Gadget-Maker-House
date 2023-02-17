@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
-import auth from "../../firebase.init";
 
 import Loading from "../../Utilities/Loading";
 
@@ -10,23 +8,21 @@ const Tools = () => {
   const navigateToPartsDetails = (id) => {
     navigate(`/tools/${id}`);
   };
-  const [loading, setLoading] = useState(true);
-  const [user] = useAuthState(auth);
+  const [loading, setLoading] = useState(false);
   const [tools, setTools] = useState([]);
 
   useEffect(() => {
-    fetch("https://gadget-maker-house-server.onrender.com/tools", {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setTools(data);
-        setLoading(false);
-      });
-  }, [user]);
+    setLoading(true);
+    async function dataFetch() {
+      fetch("https://gadget-maker-house-server.onrender.com/tools")
+        .then((res) => res.json())
+        .then((data) => {
+          setTools(data);
+          setLoading(false);
+        });
+    }
+    dataFetch();
+  }, []);
 
   return (
     <div>

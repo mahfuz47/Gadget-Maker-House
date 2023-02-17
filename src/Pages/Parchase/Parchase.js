@@ -129,7 +129,7 @@ const Parchase = () => {
           />
 
           <div className="grid grid-cols-3 py-6 items-center">
-            <p className="lg:text-xl text-lg font-bold">Set Quantity:</p>
+            <p className="lg:text-lg text-sm font-bold">Set Quantity:</p>
             <div className="flex items-center ">
               <button
                 onClick={() => minusQuantity(quantity)}
@@ -176,9 +176,9 @@ const Parchase = () => {
             </div>
             <button
               onClick={handleOrder}
-              className="btn bg-indigo-600 lg:btn-sm btn-xs hover:bg-indigo-800 text-white border-0"
+              className="btn bg-indigo-600 lg:btn-sm btn-xs hover:bg-indigo-800 text-white border-0 w-10/12 ml-auto"
             >
-              Place Order
+              Place
             </button>
           </div>
         </div>

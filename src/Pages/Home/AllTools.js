@@ -18,7 +18,10 @@ const AllTools = () => {
 
           <div className="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6 gap-y-8">
             {tools.map((tool) => (
-              <div key={tool?._id} className="group relative">
+              <div
+                key={tool?._id}
+                className="group relative bg-white p-3 rounded-lg"
+              >
                 <div className="relative w-full h-full shadow-lg bg-white rounded-lg overflow-hidden group-hover:scale-105 group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
                   <img
                     src={tool?.toolImage}
@@ -27,8 +30,8 @@ const AllTools = () => {
                     title={tool?.toolName}
                   />
                 </div>
-                <div className="flex items-center justify-between px-4">
-                  <h3 className="mt-6 text-xl font-bold font-sans text-slate-900">
+                <div className="flex items-center justify-between lg:px-4 px-1">
+                  <h3 className="mt-6 lg:text-xl text-lg font-bold font-sans text-slate-900">
                     <a href="/tools/:id">{tool?.toolName}</a>
                   </h3>
                   <div>
@@ -36,25 +39,27 @@ const AllTools = () => {
                       onClick={() => {
                         navigateToPartsDetails(tool?._id);
                       }}
-                      className="btn bg-indigo-600 rounded-xl px-3 py-1 font-bold mt-6 uppercase hover:bg-indigo-800 text-white hover:text-black"
+                      className="btn bg-indigo-600 text-white px-3 py-1 font-bold mt-6 uppercase hover:bg-indigo-800 btn-sm rounded border-0"
                     >
                       purchase
                     </button>
                   </div>
                 </div>
-                <div className="px-4">
+                <div className="lg:px-4 px-1">
                   <p>
-                    <small>
+                    <small className="lg:text-sm text-xs">
                       {tool?.description.length > 80
                         ? tool?.description.slice(0, 100) + "......"
                         : ""}
                     </small>
                   </p>
                 </div>
-                <div className="px-4">
-                  <p className="font-bold">Price: ${tool?.price}</p>
+                <div className="lg:px-4 px-1">
+                  <p className="font-bold lg:text-sm text-xs">
+                    Price: ${tool?.price}
+                  </p>
                 </div>
-                <div className="flex items-center justify-between px-4">
+                <div className="flex items-center justify-between lg:px-4 px-1 font-bold lg:text-sm text-xs">
                   <p className="font-bold">Min Order: ${tool?.minQuantity}</p>
                   <p className="font-bold">
                     Available Quantity: ${tool?.availableQuantity}
