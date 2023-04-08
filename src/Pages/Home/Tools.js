@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import axios from "axios";
 import Loading from "../../Utilities/Loading";
 
 const Tools = () => {
@@ -12,14 +13,17 @@ const Tools = () => {
   const [tools, setTools] = useState([]);
 
   useEffect(() => {
-    setLoading(true);
     async function dataFetch() {
-      fetch("https://gadget-maker-house-server.onrender.com/tools")
-        .then((res) => res.json())
-        .then((data) => {
-          setTools(data);
-          setLoading(false);
-        });
+      try {
+        setLoading(true);
+        const { data } = await axios.get(
+          "https://gadget-maker-house-server.onrender.com/tools"
+        );
+        setTools(data);
+      } catch (error) {
+      } finally {
+        setLoading(false);
+      }
     }
     dataFetch();
   }, []);
