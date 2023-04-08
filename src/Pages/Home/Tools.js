@@ -53,11 +53,11 @@ const Tools = () => {
                     title={tool.toolName}
                   />
                   {/* Product Name */}
-                  <a href="/tools/:id">
+                  <Link to={`/tools/${tool._id}`}>
                     <h3 className="mt-6 text-lg font-bold text-slate-900">
                       {tool.toolName}
                     </h3>
-                  </a>
+                  </Link>
                   {/* Product Description */}
                   <p>
                     <small>
